@@ -1,0 +1,604 @@
+####	Basics
+
+homeassistant:
+  latitude: 51
+  longitude: 5
+  time_zone: Europe/Amsterdam
+  elevation: 19
+  unit_system: metric
+  customize: !include customize.yaml
+  auth_providers:
+  - type: trusted_networks
+    trusted_networks:
+      - 192.168.1.167	# Wall mounted device
+      - 192.168.1.136	# Phone 1
+      - 192.168.1.137	# Phone 2
+    allow_bypass_login: true
+  - type: homeassistant
+
+mobile_app:
+discovery:
+python_script:
+stream:
+default_config:
+history:
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+logger:
+  default: info
+recorder:
+    db_url: !secret db_url
+    purge_keep_days: 5
+lovelace:
+   mode: yaml
+   resources: !include resources.yaml
+frontend:
+  themes: !include_dir_merge_named themes/
+auto_backup:
+  auto_purge: true
+panel_iframe:
+  mdiindex:
+    title: MDI Icon Index
+    icon: mdi:vector-square
+    url: https://cdn.rawgit.com/james-fry/home-assistant-mdi/efd95d7a/home-assistant-mdi.html
+tts:
+  - platform: google_cloud
+    key_file: !secret tts_key
+    language: nl-NL
+    speed: 0.9
+    voice: nl-NL-Wavenet-D
+
+
+####	Alarm
+
+alarm_control_panel:
+  - platform: manual
+    name: Alarm
+    code_arm_required: false
+    arming_time: 60
+    delay_time: 100
+
+ios:
+  push:
+    categories:
+      - name: lights_on
+        identifier: 'lights_on'
+        actions:
+          - identifier: 'LIGHT_ROOM_1'  
+            title: 'Alarm uitschakelen'     
+            activationMode: 'background'
+            authentificationRequired: false
+            destructive: true       
+            behaviour: 'default'
+
+
+####	Wall-mounted tablet
+
+browser_mod:
+  devices:
+    02cefbe1-890f90c3:
+      name: iPad van Home Assistant
+      disable:
+        - light
+  disable:
+    - all
+
+
+####	Shelly
+
+shelly:
+    discovery: true
+    sensors:
+    - default
+
+
+####	Bose SoundTouch Speakers
+
+media_player:
+  - platform: soundtouch
+    host: 192.168.1.254
+    port: 8090
+    name: Soundbar
+
+  - platform: soundtouch
+    host: 192.168.1.134
+    port: 8090
+    name: Grote Speaker
+
+  - platform: soundtouch
+    host: 192.168.1.185
+    port: 8090
+    name: Kleine Speaker
+    
+shell_command:
+    #soundbar - preset selectors (use release for selecting - press for setting preset to current playing)
+    bose_preset_1_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_1</key>' http://192.168.1.254:8090/key
+    bose_preset_1_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_1</key>' http://192.168.1.254:8090/key
+    bose_preset_2_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_2</key>' http://192.168.1.254:8090/key
+    bose_preset_2_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_2</key>' http://192.168.1.254:8090/key
+    bose_preset_3_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_3</key>' http://192.168.1.254:8090/key
+    bose_preset_3_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_3</key>' http://192.168.1.254:8090/key
+    bose_preset_4_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_4</key>' http://192.168.1.254:8090/key
+    bose_preset_4_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_4</key>' http://192.168.1.254:8090/key
+    bose_preset_5_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_5</key>' http://192.168.1.254:8090/key # used for setting if called on its own ... long press
+    bose_preset_5_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_5</key>' http://192.168.1.254:8090/key # used for press & release function
+    bose_preset_6_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_6</key>' http://192.168.1.254:8090/key
+    bose_preset_6_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_6</key>' http://192.168.1.254:8090/key
+    bose_play_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PLAY</key>' http://192.168.1.254:8090/key
+    bose_play_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PLAY</key>' http://192.168.1.254:8090/key
+    bose_tv_source: curl -X POST -H 'application/xml;charset=utf-8' -d '<?xml version="1.0" ?><ContentItem source="PRODUCT" sourceAccount="TV"></ContentItem>' http://192.168.1.254:8090/select
+    bose_ps4_source: curl -X POST -H 'application/xml;charset=utf-8' -d '<?xml version="1.0" ?><ContentItem source="PRODUCT" sourceAccount="HDMI_1"></ContentItem>' http://192.168.1.254:8090/select
+    bose_bt_source: curl -X POST -H 'application/xml;charset=utf-8' -d '<?xml version="1.0" ?><ContentItem source="BLUETOOTH"></ContentItem>' http://192.168.1.254:8090/select
+    #speaker - preset selectors (use release for selecting - press for setting preset to current playing)
+    bose2_preset_1_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_1</key>' http://192.168.1.134:8090/key
+    bose2_preset_1_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_1</key>' http://192.168.1.134:8090/key
+    bose2_preset_2_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_2</key>' http://192.168.1.134:8090/key
+    bose2_preset_2_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_2</key>' http://192.168.1.134:8090/key
+    bose2_preset_3_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_3</key>' http://192.168.1.134:8090/key
+    bose2_preset_3_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_3</key>' http://192.168.1.134:8090/key
+    bose2_preset_4_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_4</key>' http://192.168.1.134:8090/key
+    bose2_preset_4_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_4</key>' http://192.168.1.134:8090/key
+    bose2_preset_5_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_5</key>' http://192.168.1.134:8090/key # used for setting if called on its own ... long press
+    bose2_preset_5_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_5</key>' http://192.168.1.134:8090/key # used for press & release function
+    bose2_preset_6_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_6</key>' http://192.168.1.134:8090/key
+    bose2_preset_6_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_6</key>' http://192.168.1.134:8090/key
+    bose2_play_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PLAY</key>' http://192.168.1.134:8090/key
+    bose2_play_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PLAY</key>' http://192.168.1.134:8090/key
+    bose2_bt_source: curl -X POST -H 'application/xml;charset=utf-8' -d '<?xml version="1.0" ?><ContentItem source="BLUETOOTH"></ContentItem>' http://192.168.1.134:8090/select
+    bose2_aux_source: curl -X POST -H 'application/xml;charset=utf-8' -d '<?xml version="1.0" ?><ContentItem source="AUX"></ContentItem>' http://192.168.1.134:8090/select
+    #kleinespeaker - preset selectors (use release for selecting - press for setting preset to current playing)
+    bose3_preset_1_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_1</key>' http://192.168.1.185:8090/key
+    bose3_preset_1_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_1</key>' http://192.168.1.185:8090/key
+    bose3_preset_2_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_2</key>' http://192.168.1.185:8090/key
+    bose3_preset_2_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_2</key>' http://192.168.1.185:8090/key
+    bose3_preset_3_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_3</key>' http://192.168.1.185:8090/key
+    bose3_preset_3_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_3</key>' http://192.168.1.185:8090/key
+    bose3_preset_4_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_4</key>' http://192.168.1.185:8090/key
+    bose3_preset_4_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_4</key>' http://192.168.1.185:8090/key
+    bose3_preset_5_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_5</key>' http://192.168.1.185:8090/key # used for setting if called on its own ... long press
+    bose3_preset_5_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_5</key>' http://192.168.1.185:8090/key # used for press & release function
+    bose3_preset_6_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PRESET_6</key>' http://192.168.1.185:8090/key
+    bose3_preset_6_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PRESET_6</key>' http://192.168.1.185:8090/key
+    bose3_play_press: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="press" sender="Gabbo">PLAY</key>' http://192.168.1.185:8090/key
+    bose3_play_release: curl -X POST -H 'application/xml;charset=utf-8'  -d '<?xml version="1.0" ?><key state="release" sender="Gabbo">PLAY</key>' http://192.168.1.185:8090/key
+    bose3_bt_source: curl -X POST -H 'application/xml;charset=utf-8' -d '<?xml version="1.0" ?><ContentItem source="BLUETOOTH"></ContentItem>' http://192.168.1.185:8090/select
+    bose3_aux_source: curl -X POST -H 'application/xml;charset=utf-8' -d '<?xml version="1.0" ?><ContentItem source="AUX"></ContentItem>' http://192.168.1.185:8090/select
+
+
+####	Weather Information
+
+weather:
+  - platform: buienradar
+    name: 'Uden'
+    forecast: true
+
+camera:
+  - platform: buienradar
+    delta: 120
+    dimension: 700
+
+
+####	Sensors
+
+sensor:
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+
+  - platform: dsmr
+    host: 192.168.1.138
+    port: 8088
+    dsmr_version: 5
+
+  - platform: buienradar
+    name: "buienradar_uden"
+    monitored_conditions:
+      - condition
+      - conditioncode
+      - conditiondetailed
+      - conditionexact
+      - symbol
+      - temperature
+      - feeltemperature
+      - temperature_1d
+      - temperature_2d
+      - temperature_3d
+      - temperature_4d
+      - temperature_5d
+      - mintemp_1d
+      - mintemp_2d
+      - mintemp_3d
+      - rainchance_1d
+      - rainchance_2d
+      - rainchance_3d
+      - sunchance_1d
+      - sunchance_2d
+      - sunchance_3d
+      - rain_1d
+      - rain_2d
+      - rain_3d
+      - minrain_1d
+      - minrain_2d
+      - minrain_3d
+      - maxrain_1d
+      - maxrain_2d
+      - maxrain_3d
+      - irradiance
+
+  - platform: rest
+    name: weerbericht_uden
+    json_attributes_path: "$.[0]"
+    scan_interval: 600
+    json_attributes:
+      - plaats
+      - temp
+      - samenv
+      - verw
+      - d0neerslag
+      - gtemp
+      - d0tmax
+      - d0tmin
+      - d1tmax
+      - d1tmin
+      - d2tmax
+      - d2tmin
+    resource: !secret weather_api
+    value_template: 'OK'
+
+
+####	Templates
+
+  - platform: template
+    sensors:
+      dayoftheweek:
+        value_template: "{{ ['Maandag','Dinsdag','Woensdag','Donderdag','Vrijdag','Zaterdag','Zondag'][now().weekday()] }}"
+      dayoftheweek_2d:
+        value_template: "{{ ['Maandag','Dinsdag','Woensdag','Donderdag','Vrijdag','Zaterdag','Zondag'][now().weekday()-2] }}"
+      dayoftheweek_3d:
+        value_template: "{{ ['Maandag','Dinsdag','Woensdag','Donderdag','Vrijdag','Zaterdag','Zondag'][now().weekday()-3] }}"
+      dayoftheweek_4d:
+        value_template: "{{ ['Maandag','Dinsdag','Woensdag','Donderdag','Vrijdag','Zaterdag','Zondag'][now().weekday()-4] }}"
+      dayoftheweek_5d:
+        value_template: "{{ ['Maandag','Dinsdag','Woensdag','Donderdag','Vrijdag','Zaterdag','Zondag'][now().weekday()-5] }}"
+      dayoftheweek_6d:
+        value_template: "{{ ['Maandag','Dinsdag','Woensdag','Donderdag','Vrijdag','Zaterdag','Zondag'][now().weekday()-6] }}"
+      date_long: 
+        friendly_name: 'Datum'
+        value_template: >
+            {% set months = ["Januari", "Februari", "Maart", "April", "Mei", "Juni", "Juli", "Augustus", "September", "Oktober", "November", "December"] %}
+            {% set month = months[now().strftime('%m') | int -1] %}  
+            {{ now().strftime('%d') + ' ' + month }}
+      time_date:
+        value_template: "{{ states('sensor.dayoftheweek') + ' ' + states('sensor.date_long') }}"
+        friendly_name: 'Tijd en datum'
+      date_month:
+        value_template: "{{ now().month }}"
+        friendly_name: 'Maand nummer'
+
+      badkamer_temp_adj:
+        value_template: "{{ states('sensor.badkamer_sensor_temperature')|float + 1 }}"
+        unit_of_measurement: "°C"
+        friendly_name: 'Badkamer temperatuur adjusted'
+      weersverwachting:
+        value_template: >-
+          {% if state_attr('sensor.weerbericht_uden','d0tmin')|float < 2 or state_attr('sensor.weerbericht_uden','d0tmax')|float < 5 %}
+            vries
+          {% elif state_attr('sensor.weerbericht_uden','d0tmax')|float < 16 %}
+            koud
+          {% elif state_attr('sensor.weerbericht_uden','d0tmax')|float > 19 %}
+            warm
+          {% elif state_attr('sensor.weerbericht_uden','d0tmax')|float > 25 %}
+            hittegolf
+          {% elif state_attr('sensor.weerbericht_uden','d0tmax')|float > 24 and state_attr('sensor.weerbericht_uden','d1tmax')|float > 24 %}
+            hittegolf
+          {% elif state_attr('sensor.weerbericht_uden','d0tmax')|float > 23 and state_attr('sensor.weerbericht_uden','d1tmax')|float > 23 and state_attr('sensor.weerbericht_uden','d2tmax')|float > 23 %}
+            hittegolf
+          {% else %}
+            normaal
+          {% endif %}
+        friendly_name: 'Weersverwachting'
+
+      standby_cost_day:
+        value_template: "{{ (state_attr('sensor.power_consumption_stats','min_value')|float * 0.21121 * 24)|round(2) }}"
+        unit_of_measurement: '€'  
+      standby_cost_year:
+        value_template: "{{ (state_attr('sensor.power_consumption_stats','min_value')|float * 0.21121 * 24 * 365)|round(0) }}"
+        unit_of_measurement: '€'  
+      standby_txt:
+        value_template: >-
+          {% if states('sensor.standby_cost_day')|float < 0.42 %}
+            {{ 'De standbykosten zijn onder gemiddeld: €' + states('sensor.standby_cost_day') + ' per dag (€' + states('sensor.standby_cost_year') + ' per jaar)' }}
+          {% else %}
+            {{ 'Let op! De standbykosten zijn boven gemiddeld: €' + states('sensor.standby_cost_day') + ' per dag (€' + states('sensor.standby_cost_year') + ' per jaar)' }}
+          {% endif %}
+        friendly_name: 'Standby kosten'
+      standby_high:
+        value_template: >-
+          {% if states('sensor.standby_cost_day')|float < 0.52 %}
+            off
+          {% else %}
+            on
+          {% endif %}
+        friendly_name: 'Standby kosten'
+
+      thermostaat_woonkamer_timer:
+        value_template: >-
+            {{ (((as_timestamp(now()) - as_timestamp(states.input_boolean.thermostaat_woonkamer_handmatig.last_changed))/60)|float)|round(0) }}
+        friendly_name: 'Thermostaat woonkamer handmatig timer'
+      thermostaat_slaapkamer_timer:
+        value_template: >-
+            {{ (((as_timestamp(now()) - as_timestamp(states.input_boolean.thermostaat_slaapkamer_handmatig.last_changed))/60)|float)|round(0) }}
+        friendly_name: 'Thermostaat slaapkamer handmatig timer'
+      thermostaat_badkamer_timer:
+        value_template: >-
+            {{ (((as_timestamp(now()) - as_timestamp(states.input_boolean.thermostaat_badkamer_handmatig.last_changed))/60)|float)|round(0) }}
+        friendly_name: 'Thermostaat badkamer handmatig timer'
+      woonkamer_no_motion_30min:
+        value_template: >-
+            {% if is_state('binary_sensor.woonkamer', 'off') %}
+              {{ (((as_timestamp(states.sensor.date.state + " " + states.sensor.time.state) - as_timestamp(states.binary_sensor.woonkamer.last_changed)) / 60 ) | int > 29) }}
+            {% else %}
+              False
+            {% endif %}
+        friendly_name: 'Woonkamer bewegingssensor helper (30min)'
+      woonkamer_no_motion_5min:
+        value_template: >-
+            {% if is_state('binary_sensor.woonkamer', 'off') %}
+              {{ (((as_timestamp(states.sensor.date.state + " " + states.sensor.time.state) - as_timestamp(states.binary_sensor.woonkamer.last_changed)) / 60 ) | int > 4) }}
+            {% else %}
+              False
+            {% endif %}
+        friendly_name: 'Woonkamer bewegingssensor helper (5min)'
+      eetkamer_no_motion_15min:
+        value_template: >-
+            {% if is_state('binary_sensor.eetkamer', 'off') %}
+              {{ (((as_timestamp(states.sensor.date.state + " " + states.sensor.time.state) - as_timestamp(states.binary_sensor.eetkamer.last_changed)) / 60 ) | int > 10) }}
+            {% else %}
+              False
+            {% endif %}
+        friendly_name: 'Eetkamer bewegingssensor helper (15min)'
+      woonkamer_lux_8:
+        value_template: >-
+            {% if states('sensor.lightlevel_woonkamer')|float < 8 %}
+              on
+            {% else %}
+              off
+            {% endif %}
+        friendly_name: 'Woonkamer lux 0-8'
+      woonkamer_lux_14:
+        value_template: >-
+            {% if states('sensor.lightlevel_woonkamer')|float < 14 %}
+              on
+            {% else %}
+              off
+            {% endif %}
+        friendly_name: 'Woonkamer lux 0-14'
+      woonkamer_lux_26:
+        value_template: >-
+            {% if states('sensor.lightlevel_woonkamer')|float < 26 %}
+              on
+            {% else %}
+              off
+            {% endif %}
+        friendly_name: 'Woonkamer lux 0-26'
+      openhaard:
+        value_template: >-
+            {% if ((states('sensor.multi_woonkamer_temperature')|float) - 1) > (states('sensor.woonkamer_room_temperature')|float) %}
+              on
+            {% else %}
+              off
+            {% endif %}
+        friendly_name: 'Openhaard'
+
+
+####	Data processing
+
+  - platform: statistics
+    entity_id: sensor.power_consumption
+    name: power_consumption_stats
+    sampling_size: 100000
+    max_age:
+      hours: 23
+
+  - platform: filter
+    name: "power_consumption_filter"
+    entity_id: sensor.power_consumption
+    filters:
+    - filter: time_throttle
+      window_size: "00:00:05"
+
+  - platform: filter
+    name: "woonkamer_temp_adj_filter"
+    entity_id: sensor.woonkamer_temp_adj
+    filters:
+    - filter: time_throttle
+      window_size: "00:05:00"
+
+  - platform: filter
+    name: "temperature_eetkamer_filter"
+    entity_id: sensor.temperature_eetkamer
+    filters:
+    - filter: time_throttle
+      window_size: "00:05:00"
+
+  - platform: filter
+    name: "keuken_sensor_temperature_filter"
+    entity_id: sensor.keuken_sensor_temperature
+    filters:
+    - filter: time_throttle
+      window_size: "00:05:00"
+
+  - platform: filter
+    name: "gang_sensor_temperature_filter"
+    entity_id: sensor.gang_sensor_temperature
+    filters:
+    - filter: time_throttle
+      window_size: "00:05:00"
+
+  - platform: filter
+    name: "wc_sensor_temperature_filter"
+    entity_id: sensor.wc_sensor_temperature
+    filters:
+    - filter: time_throttle
+      window_size: "00:05:00"
+
+  - platform: filter
+    name: "slaapkamer_temp_adj_filter"
+    entity_id: sensor.slaapkamer_temp_adj
+    filters:
+    - filter: time_throttle
+      window_size: "00:05:00"
+
+  - platform: filter
+    name: "badkamer_temp_adj_filter"
+    entity_id: sensor.badkamer_temp_adj
+    filters:
+    - filter: time_throttle
+      window_size: "00:05:00"
+
+  - platform: filter
+    name: "wasruimte_sensor_temperature_filter"
+    entity_id: sensor.wasruimte_sensor_temperature
+    filters:
+    - filter: time_throttle
+      window_size: "00:05:00"
+
+  - platform: filter
+    name: "overloop_sensor_temperature_filter"
+    entity_id: sensor.overloop_sensor_temperature
+    filters:
+    - filter: time_throttle
+      window_size: "00:05:00"
+
+  - platform: filter
+    name: "overloop_zolder_sensor_temperature_filter"
+    entity_id: sensor.overloop_zolder_sensor_temperature
+    filters:
+    - filter: time_throttle
+      window_size: "00:05:00"
+
+
+####	Washing machine
+
+binary_sensor:
+  - platform: template
+    sensors:
+      washing_machine_new:
+        friendly_name: "Wasmachine"
+        delay_on:
+          minutes: 3
+        delay_off:
+          minutes: 1
+        value_template: >-
+          {{ states('sensor.shelly_shplg_s_dac860_current_consumption')|float > 8 }}    
+
+
+####	Light groups
+
+light:
+  - platform: group
+    name: Woonkamer
+    entities:
+      - light.hue_filament_bulb_1
+      - light.hue_filament_bulb_2
+      - light.iris_woonkamer
+      - light.bloom_woonkamer_1
+      - light.bloom_woonkamer_2
+      - light.bloom_keuken
+      - light.go_woonkamer
+      - light.go_keuken_2
+      - light.go_keuken
+      - light.lamp_ventilator
+  - platform: group
+    name: Eetkamer
+    entities:
+      - light.hue_ambiance_candle_1
+      - light.hue_ambiance_candle_2
+      - light.hue_ambiance_candle_3
+      - light.hue_ambiance_candle_4
+      - light.hue_ambiance_candle_5
+  - platform: group
+    name: Keuken
+    entities:
+      - light.hue_white_lamp_1_2
+      - light.hue_lightstrip_plus_1
+  - platform: group
+    name: Slaapkamer
+    entities:
+      - light.slaapkamer_lamp_1
+      - light.slaapkamer_lamp_3
+      - light.slaapkamer_lamp_2
+      - light.hue_white_lamp_1_3
+  - platform: group
+    name: Badkamer
+    entities:
+      - light.badkamer_lamp
+      - light.badkamer_spots
+  - platform: group
+    name: Achtertuin
+    entities:
+      - light.hue_white_lamp_1
+      - light.slaapkamer_lamp_4
+  - platform: group
+    name: Voortuin
+    entities:
+      - light.buitenlamp
+  - platform: group
+    name: Wc
+    entities:
+      - light.wc_lamp
+  - platform: group
+    name: Gang
+    entities:
+      - light.lamp_washok
+  - platform: group
+    name: Overloop
+    entities:
+      - light.overloop_lamp
+  - platform: group
+    name: Overloop zolder
+    entities:
+      - light.overloop_zolder_lamp
+  - platform: group
+    name: Washok
+    entities:
+      - light.gang_lamp
+
+
+####	Device trackers
+
+device_tracker:
+  - platform: iphonedetect
+    consider_home: 120
+    scan_interval: 5
+    new_device_defaults:
+      track_new_devices: false
+    hosts:
+      hostname1: 192.168.1.136
+      hostname2: 192.168.1.137
+
+
+####	Climate
+
+climate:
+  - platform: generic_thermostat
+    name: Logeerkamer
+    heater: input_boolean.dummy_logeerkamer_kachel
+    target_sensor: sensor.overloop_zolder_sensor_temperature
+    cold_tolerance: 0.1
+    hot_tolerance: 0.1
+    min_temp: 10
+    max_temp: 31
+    precision: 0.5
+  - platform: generic_thermostat
+    name: Badkamer
+    heater: switch.badkamer_1
+    target_sensor: sensor.badkamer_temp_adj
+    cold_tolerance: 0.1
+    hot_tolerance: 0.1
+    min_temp: 10
+    max_temp: 31
+    precision: 0.5
