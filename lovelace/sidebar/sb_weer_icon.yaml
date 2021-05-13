@@ -1,0 +1,20 @@
+current: true
+details: false
+forecast: false
+entity: weather.uden
+style: |
+  :host {
+    left: 70%;
+    top:  11%;
+    width: 16%;
+    overflow: hidden;
+    height: 15%;
+  }
+  ha-card {
+    background: none  !important;
+    box-shadow: none !important;
+    opacity: 0.8;
+    font-size: 0.8vw !important;
+    # transform: scale(1,1);
+  }
+type: 'custom:weather-card'

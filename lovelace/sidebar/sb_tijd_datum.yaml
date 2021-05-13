@@ -1,0 +1,12 @@
+# 14
+entity: sensor.date_long
+style:
+  font-size: 2.7vw
+  font-weight: 150
+  left: 80%
+  top: 6.2%
+  color: lightgrey
+  transform: scale(1.15,1)
+type: state-label
+tap_action:
+  action: none

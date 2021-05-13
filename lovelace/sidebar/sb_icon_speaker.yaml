@@ -1,0 +1,9 @@
+image: /local/images/speaker.png
+style:
+  left: 41%
+  top: 92.5%
+  width: 5%
+tap_action:
+  action: navigate
+  navigation_path: /lovelace/2
+type: image

@@ -1,0 +1,14 @@
+type: conditional
+conditions:
+  - entity: device_tracker.hostname2
+    state: "home"
+elements:
+  - image: /local/images/richelle.jpg
+    style:
+      left: 38%
+      top: 2.5%
+      border-radius: 20px
+      width: 3.8%
+      opacity: 0.6
+    type: image
+tap_action: none

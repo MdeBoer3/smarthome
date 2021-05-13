@@ -1,0 +1,12 @@
+type: conditional
+conditions:
+  - entity: binary_sensor.washing_machine_new
+    state: "on"
+elements:
+  - image: /local/images/wash_on_test.gif
+    style:
+      left: 56%
+      top: 6%
+      width: 6%
+    type: image
+tap_action: none

@@ -1,0 +1,15 @@
+type: conditional          
+conditions:
+  - entity: input_boolean.energy_hoog_verbruik
+    state: 'off'
+elements:
+  - icon: mdi:emoticon-excited-outline
+    style:
+      left: 26%
+      top: 8%
+      width: 2.4%
+    type: icon
+    tap_action:
+      action: none
+tap_action:
+  action: none

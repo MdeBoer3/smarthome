@@ -1,0 +1,13 @@
+# # 13
+entity: sensor.time
+type: state-label
+style:
+    font-size: 2.5vmax
+    font-family: 'Poppins,sans-serif'
+    font-weight: 500
+    left: 7%
+    text-align: center
+    top: 3%
+    transform: scale(3,3)
+tap_action:
+  action: none

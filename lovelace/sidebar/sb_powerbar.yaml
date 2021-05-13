@@ -1,0 +1,49 @@
+# 22
+entity: input_number.energy_dag_0
+max: 6
+min: 0
+direction: up
+positions:
+  icon: 'off'
+  indicator: 'off'
+  name: 'off'
+  value: 'off'
+severity:
+  - color: Green
+    from: 0
+    to: 2.5
+  - color: YellowGreen
+    from: 2.5
+    to: 2.9
+  - color: Gold
+    from: 3
+    to: 3.3
+  - color: Orange
+    from: 3.3
+    to: 3.9
+  - color: OrangeRed
+    from: 3.9
+    to: 4.5
+  - color: Firebrick
+    from: 4.5
+    to: 100
+style: |
+  :host {
+    left: 26%;
+    top:  5.6%;
+    width: 8%;
+    height: 14%;
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 0.1vw;
+  }
+  ha-card {
+    height: 100%;
+    background: none !important;
+    box-shadow: none !important;
+    border-radius: 0.1vw;
+    font-size: 1.5vw !important;
+  }
+tap_action:
+  action: none
+type: 'custom:bar-card'

@@ -1,0 +1,17 @@
+type: conditional
+conditions:
+  - entity: switch.adguard_protection
+    state: "off"
+elements:
+  - image: /local/images/one_2.png
+    style:
+      left: 80%
+      top: 91%
+      width: 3%
+    type: image
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/4
+tap_action:
+  action: navigate
+  navigation_path: /lovelace/4

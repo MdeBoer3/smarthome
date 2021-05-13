@@ -1,0 +1,12 @@
+type: conditional
+conditions:
+  - entity: input_boolean.papier_actief
+    state: "on"
+elements:
+  - image: /local/images/papier2.png
+    style:
+      left: 46%
+      top: 6%
+      width: 5.2%
+    type: image
+tap_action: none

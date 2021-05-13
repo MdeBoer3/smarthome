@@ -1,0 +1,16 @@
+###############  Achtergrond:  ##################
+image: /local/images/electric.png
+
+style:
+#   box-shadow: 'inset 0px 0px 30px black'
+#   border-radius: '25px'
+#   background: 'none'
+#   height: 3%
+  left: 59%
+  top: 92.7%
+  width: 5.5%
+#   transform: scale(2.8,2.8)
+tap_action:
+  action: navigate
+  navigation_path: /lovelace/3
+type: image

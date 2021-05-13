@@ -1,0 +1,12 @@
+# 14
+entity: sensor.dayoftheweek
+style:
+  font-size: 4vw
+  font-weight: 350
+  left: 88.5%
+  text-align: right
+  top: 3.5%
+  color: lightgrey
+type: state-label
+tap_action:
+  action: none

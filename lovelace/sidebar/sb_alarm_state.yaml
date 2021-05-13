@@ -1,0 +1,24 @@
+# 12
+entity: alarm_control_panel.alarm
+state_image:
+  'disarmed': /local/images/alarm-disarmed4.png
+  'armed_away': /local/images/alarm-armed4.png
+  'arming': /local/images/alarm-armed4.png
+  'pending': /local/images/alarm.gif
+  'triggered': /local/images/alarm.gif
+style:
+  left: 36%
+  top: 6%
+  width: 8%
+#   opacity: 1
+tap_action:
+  action: call-service
+  service: alarm_control_panel.alarm_disarm
+  service_data:
+    entity_id: alarm_control_panel.alarm
+double_tap_action:
+  action: call-service
+  service: alarm_control_panel.alarm_arm_away
+  service_data:
+    entity_id: alarm_control_panel.alarm
+type: image

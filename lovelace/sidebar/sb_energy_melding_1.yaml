@@ -1,0 +1,17 @@
+type: conditional
+conditions:
+  - entity: sensor.standby_high
+    state: "on"
+elements:
+  - image: /local/images/one_2.png
+    style:
+      left: 61%
+      top: 91%
+      width: 3%
+    type: image
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace/3
+tap_action:
+  action: navigate
+  navigation_path: /lovelace/3

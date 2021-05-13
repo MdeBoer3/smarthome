@@ -1,0 +1,13 @@
+type: conditional
+conditions:
+  - entity: input_boolean.gast
+    state: "on"
+elements:
+  - image: /local/images/visitor2.png
+    style:
+      left: 36%
+      top: 15%
+      width: 13%
+      opacity: 0.8
+    type: image
+tap_action: none
