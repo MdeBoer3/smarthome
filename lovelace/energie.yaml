@@ -1,0 +1,791 @@
+#########################################
+####            Top Bar             #####
+#########################################
+
+          - !include sidebar/sb_achtergrond2.yaml
+          - !include sidebar/sb_weer_icon.yaml
+          - !include sidebar/sb_weer_plaats.yaml
+          
+          - !include sidebar/sb_wasmachine.yaml
+          - !include sidebar/sb_powerbar.yaml
+          - !include sidebar/sb_powerstate.yaml
+          - !include sidebar/sb_powerstate_2.yaml
+          
+          - !include sidebar/sb_tijd.yaml
+          - !include sidebar/sb_tijd_datum.yaml
+          - !include sidebar/sb_dayoftheweek.yaml
+          
+          - !include sidebar/sb_afval_rest.yaml
+          - !include sidebar/sb_afval_gft.yaml
+          - !include sidebar/sb_afval_plastic.yaml
+          - !include sidebar/sb_afval_papier.yaml
+          
+          - !include sidebar/sb_mason.yaml
+          - !include sidebar/sb_richelle.yaml
+          - !include sidebar/sb_visitor.yaml
+          - !include sidebar/sb_alarm_state.yaml
+
+
+#########################################
+####        Custom panels           ####
+#########################################
+
+####    Stroomverbruik
+          - type: custom:dual-gauge-card
+            shadeInner: true
+            cardwidth: 300
+            background_color: "rgba(0, 0, 0, 0.2)"
+            outer:
+                entity: sensor.power_consumption_filter
+                label: "kW"
+                min: 0
+                max: 1.8
+                colors:
+                    - color: Firebrick
+                      value: 1.7
+                    - color: OrangeRed
+                      value: 1.4
+                    - color: Orange
+                      value: 1
+                    - color: Gold
+                      value: 0.5
+                    - color: YellowGreen
+                      value: 0.2
+                    - color: YellowGreen
+                      value: 0
+            inner:
+                entity: sensor.hourly_gas_consumption
+                label: "Gas (m3)"
+                min: 0
+                max: 0.6
+                colors:
+                    - color: Firebrick
+                      value: 0.5
+                    - color: OrangeRed
+                      value: 0.4
+                    - color: Orange
+                      value: 0.3
+                    - color: Gold
+                      value: 0.2
+                    - color: YellowGreen
+                      value: 0.1
+                    - color: YellowGreen
+                      value: 0
+            style:
+              left: 50%
+              top: 32%
+              --ha-card-background: "rgba(0, 0, 0, 0)" 
+              --ha-card-box-shadow: "rgba(0, 0, 0, 0)" 
+          - type: conditional          
+            conditions:
+              - entity: sensor.power_tariff
+                state: "normal"
+            elements:
+              - style:
+                  font-size: 2vw
+                  font-weight: 300
+                  left: 50%
+                  text-align: center
+                  top: 39%
+                  color: lightgrey
+                text: 'Hoog tarief'
+                type: custom:text-element  
+            tap_action: none
+          - type: conditional          
+            conditions:
+              - entity: sensor.power_tariff
+                state: "low"
+            elements:
+              - style:
+                  font-size: 2vw
+                  font-weight: 300
+                  left: 50%
+                  text-align: center
+                  color: lightgrey
+                  top: 39%
+                text: 'Laag tarief'
+                type: custom:text-element  
+            tap_action: none
+
+####    Stroom opgewerkt
+          - type: custom:dual-gauge-card
+            shadeInner: true
+            cardwidth: 260
+            background_color: "rgba(0, 0, 0, 0.2)"
+            outer:
+                entity: sensor.energy_production_tarif_1
+                label: "Laag"
+                min: 0
+                max: 0.1
+                colors:
+                    - color: Firebrick
+                      value: 1.7
+                    - color: OrangeRed
+                      value: 1.4
+                    - color: Orange
+                      value: 1
+                    - color: Gold
+                      value: 0.5
+                    - color: YellowGreen
+                      value: 0.2
+                    - color: YellowGreen
+                      value: 0
+            inner:
+                entity: sensor.energy_production_tarif_2
+                label: "Hoog"
+                min: 0
+                max: 0.1
+                colors:
+                    - color: Firebrick
+                      value: 0.5
+                    - color: OrangeRed
+                      value: 0.4
+                    - color: Orange
+                      value: 0.3
+                    - color: Gold
+                      value: 0.2
+                    - color: YellowGreen
+                      value: 0.1
+                    - color: YellowGreen
+                      value: 0
+            style:
+              left: 80%
+              top: 32%
+              --ha-card-background: "rgba(0, 0, 0, 0)" 
+              --ha-card-box-shadow: "rgba(0, 0, 0, 0)" 
+          - style:
+              font-size: 1.6vw
+              font-weight: 300
+              left: 80%
+              text-align: center
+              color: lightgrey
+              top: 38.2%
+            text: 'Opgewekt'
+            type: custom:text-element  
+
+####    Standby stroom
+          - type: custom:dual-gauge-card
+            shadeInner: true
+            cardwidth: 260
+            background_color: "rgba(0, 0, 0, 0.2)"
+            outer:
+                entity: sensor.standby_cost_day
+                label: "/dag"
+                min: 0.2
+                max: 1
+                colors:
+                    - color: Firebrick
+                      value: 0.8
+                    - color: OrangeRed
+                      value: 0.7
+                    - color: Orange
+                      value: 0.6
+                    - color: Gold
+                      value: 0.5
+                    - color: YellowGreen
+                      value: 0.4
+                    - color: YellowGreen
+                      value: 0
+            inner:
+                entity: sensor.standby_cost_year
+                label: "/jaar"
+                min: 70
+                max: 400
+                colors:
+                    - color: Firebrick
+                      value: 292
+                    - color: OrangeRed
+                      value: 255
+                    - color: Orange
+                      value: 219
+                    - color: Gold
+                      value: 182
+                    - color: YellowGreen
+                      value: 146
+                    - color: YellowGreen
+                      value: 0
+            style:
+              left: 20%
+              top: 32%
+              --ha-card-background: "rgba(0, 0, 0, 0)" 
+              --ha-card-box-shadow: "rgba(0, 0, 0, 0)" 
+          - style:
+              font-size: 1.6vw
+              font-weight: 300
+              left: 20%
+              text-align: center
+              color: lightgrey
+              top: 38.2%
+            text: 'Standby kosten'
+            type: custom:text-element  
+
+####    Melding
+          - type: conditional          
+            conditions:
+              - entity: input_boolean.energy_hoog_verbruik
+                state: 'on'
+              - entity: sensor.standby_high
+                state: "on"
+            elements:
+              - type: image
+                image: /local/images/black-100-100.png
+                style:
+                  left: 50%
+                  top: 18%
+                  width: 65%
+                  height: 7%
+                  opacity: 0.1
+                  box-shadow: '0px 0px 20px dimgrey, 0px 0px 20px dimgrey, 0px 0px 10px dimgrey, 0px 0px 10px dimgrey'
+                  border-radius: 25px
+              - type: image
+                image: /local/images/info.png
+                style:
+                  left: 21%
+                  top: 18%
+                  width: 3%
+              - style:
+                  font-size: 2vw
+                  font-weight: 350
+                  left: 52%
+                  text-align: center
+                  color: lightgrey
+                  top: 18%
+                  width: 70%
+                text: 'Het stroomverbruik én de standbykosten zijn aan de hoge kant!'
+                type: custom:text-element  
+            tap_action: none
+
+          - type: conditional
+            conditions:
+              - entity: input_boolean.energy_hoog_verbruik
+                state: 'on'
+              - entity: sensor.standby_high
+                state: "off"
+            elements:
+              - type: image
+                image: /local/images/black-100-100.png
+                style:
+                  left: 50%
+                  top: 18%
+                  width: 61%
+                  height: 7%
+                  opacity: 0.1
+                  box-shadow: '0px 0px 20px dimgrey, 0px 0px 20px dimgrey, 0px 0px 10px dimgrey, 0px 0px 10px dimgrey'
+                  border-radius: 25px
+              - type: image
+                image: /local/images/info.png
+                style:
+                  left: 23%
+                  top: 18%
+                  width: 3%
+              - style:
+                  font-size: 2vw
+                  font-weight: 350
+                  left: 52%
+                  text-align: center
+                  color: lightgrey
+                  top: 18%
+                  width: 70%
+                text: 'Het stroomverbruik is aan de hoge kant. Eco-modus actief'
+                type: custom:text-element  
+            tap_action: none
+
+          - type: conditional          
+            conditions:
+              - entity: sensor.standby_high
+                state: "on"
+              - entity: input_boolean.energy_hoog_verbruik
+                state: 'off'
+            elements:
+              - type: image
+                image: /local/images/black-100-100.png
+                style:
+                  left: 50%
+                  top: 18%
+                  width: 69%
+                  height: 7%
+                  opacity: 0.2
+                  box-shadow: '0px 0px 20px dimgrey, 0px 0px 20px dimgrey, 0px 0px 10px dimgrey, 0px 0px 10px dimgrey'
+                  border-radius: 25px
+              - type: image
+                image: /local/images/info.png
+                style:
+                  left: 19%
+                  top: 18%
+                  width: 3%
+              - style:
+                  font-size: 2vw
+                  font-weight: 350
+                  left: 52%
+                  text-align: center
+                  color: lightgrey
+                  top: 18%
+                  width: 90%
+                text: 'De standby kosten zijn aan de hoge kant, zet onnodige apparaten uit'
+                type: custom:text-element
+            tap_action: none
+
+# Bar charts van deze week
+          - entities: 
+              - entity: input_number.energy_dag_6
+              - entity: input_number.energy_dag_5
+              - entity: input_number.energy_dag_4
+              - entity: input_number.energy_dag_3
+              - entity: input_number.energy_dag_2
+              - entity: input_number.energy_dag_1
+              - entity: input_number.energy_dag_0
+                # target: 3.3
+            max: 6.5
+            min: 0
+            name: " "
+            # target: 3.3
+            stack: horizontal
+            direction: up   
+            positions:
+              icon: 'off'
+              indicator: 'off'
+              name: inside
+            severity:
+              - color: Green
+                from: 0
+                to: 2.5
+              - color: YellowGreen
+                from: 2.5
+                to: 2.9
+              - color: Gold
+                from: 3
+                to: 3.3
+              - color: Orange
+                from: 3.3
+                to: 3.9
+              - color: OrangeRed
+                from: 3.9
+                to: 4.5
+              - color: Firebrick
+                from: 4.5
+                to: 100
+            style: |
+              :host {
+                left: 50%;
+                top:  52.5%;
+                width: 100%;
+                height: 22%;
+                background: none !important;
+                box-shadow: none !important;
+              }
+              ha-card {
+                height: 100%;
+                background: none  !important;
+                box-shadow: none !important;
+                border-radius: 1vw;
+                font-size: 1.5vw !important;
+            tap_action:
+              action: none
+            type: 'custom:bar-card' 
+          - entities: 
+              - entity: input_number.energy_dag_x
+            max: 6.5
+            min: 0
+            name: " "
+            # target: 3.3
+            stack: horizontal
+            direction: up   
+            positions:
+              icon: 'off'
+              indicator: 'off'
+              name: 'off'
+              value: 'off'
+            severity:
+              - color: Green
+                from: 0
+                to: 2.5
+              - color: YellowGreen
+                from: 2.5
+                to: 2.9
+              - color: Gold
+                from: 3
+                to: 3.3
+              - color: Orange
+                from: 3.3
+                to: 3.9
+              - color: OrangeRed
+                from: 3.9
+                to: 4.5
+              - color: Firebrick
+                from: 4.5
+                to: 100
+            style: |
+              :host {
+                left: 91.83%;
+                top:  52.5%;
+                width: 16.3%;
+                height: 22%;
+                opacity: 0.25;
+                background: none !important;
+                box-shadow: none !important;
+              }
+              ha-card {
+                height: 100%;
+                background: none  !important;
+                box-shadow: none !important;
+                border-radius: 1vw;
+                font-size: 1.5vw !important;
+            tap_action:
+              action: none
+            type: 'custom:bar-card' 
+
+# Bar charts van deze maand
+          - entities: 
+              - entity: input_number.energy_jan
+                name: Jan
+              - entity: input_number.energy_feb
+                name: Feb
+              - entity: input_number.energy_maa
+                name: Maa
+              - entity: input_number.energy_apr
+                name: Apr
+              - entity: input_number.energy_mei
+                name: Mei
+              - entity: input_number.energy_jun
+                name: Jun
+              - entity: input_number.energy_jul
+                name: Jul
+              - entity: input_number.energy_aug
+                name: Aug
+              - entity: input_number.energy_sep
+                name: Sep
+              - entity: input_number.energy_okt
+                name: Okt
+              - entity: input_number.energy_nov
+                name: Nov
+              - entity: input_number.energy_dec
+                name: Dec
+            max: 150
+            min: 0
+            direction: up   
+            decimal: 0
+            name: " "
+            stack: horizontal
+            positions:
+              icon: 'off'
+              indicator: 'off'
+              name: inside
+            severity:
+              - color: Green
+                from: 0
+                to: 65
+              - color: YellowGreen
+                from: 65
+                to: 80
+              - color: Gold
+                from: 80
+                to: 90
+              - color: Orange
+                from: 90
+                to: 100
+              - color: OrangeRed
+                from: 100
+                to: 110
+              - color: Firebrick
+                from: 110
+                to: 400
+            style: |
+              :host {
+                left: 50%;
+                top:  74%;
+                width: 100%;
+                height: 22%;
+                background: none !important;
+                box-shadow: none !important;
+              }
+              ha-card {
+                height: 100%;
+                background: none !important;
+                box-shadow: none !important;
+                border-radius: 0.1vw;
+                font-size: 1.5vw !important;
+            tap_action:
+              action: none
+            type: 'custom:bar-card'  
+
+# Namen van week charts
+          - style:
+              font-size: 1.5vw
+              font-weight: 200
+              left: 92%
+              text-align: center
+              top: 46%
+              width: 10%
+            text: 'Vandaag'
+            type: custom:text-element  
+          - style:
+              font-size: 1.5vw
+              font-weight: 200
+              left: 78%
+              text-align: center
+              top: 46%
+              width: 10%
+            text: 'Gisteren'
+            type: custom:text-element            
+          - entity: sensor.dayoftheweek_2d
+            style:
+              font-size: 1.5vw
+              font-weight: 200
+              left: 64%
+              text-align: center
+              top: 46%
+              width: 10%
+            type: state-label
+          - entity: sensor.dayoftheweek_3d
+            style:
+              font-size: 1.5vw
+              font-weight: 200
+              left: 50%
+              text-align: center
+              top: 46%
+              width: 10%
+            type: state-label
+          - entity: sensor.dayoftheweek_4d
+            style:
+              font-size: 1.5vw
+              font-weight: 200
+              left: 36%
+              text-align: center
+              top: 46%
+              width: 10%
+            type: state-label
+          - entity: sensor.dayoftheweek_5d
+            style:
+              font-size: 1.5vw
+              font-weight: 200
+              left: 22%
+              text-align: center
+              top: 46%
+              width: 10%
+            type: state-label
+          - entity: sensor.dayoftheweek_6d
+            style:
+              font-size: 1.5vw
+              font-weight: 200
+              left: 8%
+              text-align: center
+              top: 46%
+              width: 10%
+            type: state-label
+
+# Graph
+          - type: image
+            image: /local/images/graph.png
+            filter: invert(100%) hue-rotate(-80deg)
+            style:
+              left: 5%
+              top: 18%
+              width: 6.5%
+              border-radius: 25px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/6/
+
+
+####    Refresh icons
+          - action: none
+            image: /local/images/refresh.gif        # Vandaag
+            style:
+              left: 92%
+              top: 50%
+              width: 4%
+              opacity: 0.3
+            type: image
+          - type: conditional
+            conditions:
+              - entity: sensor.date_month
+                state: "1"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    #Jan
+                style:
+                  left: 5%
+                  top: 70%
+                  width: 3%
+                  opacity: 0.3
+                type: image
+            tap_action: none
+          - type: conditional
+            conditions:
+              - entity: sensor.date_month
+                state: "2"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Feb
+                style:
+                  left: 13.2%
+                  top: 70%
+                  width: 3%
+                  opacity: 0.3
+                type: image
+            tap_action: none
+          - type: conditional
+            conditions:
+              - entity: sensor.date_month
+                state: "3"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Maa
+                style:
+                  left: 21.4%
+                  top: 70%
+                  width: 3%
+                  opacity: 0.3
+                type: image
+            tap_action: none
+          - type: conditional
+            conditions:
+              - entity: sensor.date_month
+                state: "4"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Apr
+                style:
+                  left: 29.6%
+                  top: 70%
+                  width: 3%
+                  opacity: 0.3
+                type: image
+            tap_action: none
+          - type: conditional
+            conditions:
+              - entity: sensor.date_month
+                state: "5"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Mei
+                style:
+                  left: 37.8%
+                  top: 70%
+                  width: 3%
+                  opacity: 0.3
+                type: image
+            tap_action: none
+          - type: conditional
+            conditions:
+              - entity: sensor.date_month
+                state: "6"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Jun
+                style:
+                  left: 46%
+                  top: 70%
+                  width: 3%
+                  opacity: 0.3
+                type: image
+            tap_action: none
+          - type: conditional
+            conditions:
+              - entity: sensor.date_month
+                state: "7"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Jul
+                style:
+                  left: 54.2%
+                  top: 70%
+                  width: 3%
+                  opacity: 0.3
+                type: image
+            tap_action: none
+          - type: conditional
+            conditions:
+              - entity: sensor.date_month
+                state: "8"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Aug
+                style:
+                  left: 62.4%
+                  top: 70%
+                  width: 3%
+                  opacity: 0.3
+                type: image
+            tap_action: none
+          - type: conditional
+            conditions:
+              - entity: sensor.date_month
+                state: "9"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Sep
+                style:
+                  left: 70.6%
+                  top: 70%
+                  width: 3%
+                  opacity: 0.3
+                type: image
+            tap_action: none
+          - type: conditional
+            conditions:
+              - entity: sensor.date_month
+                state: "10"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Okt
+                style:
+                  left: 78.8%
+                  top: 70%
+                  width: 3%
+                  opacity: 0.3
+                type: image
+            tap_action: none
+          - type: conditional
+            conditions:
+              - entity: sensor.date_month
+                state: "11"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Nov
+                style:
+                  left: 87%
+                  top: 70%
+                  width: 3%
+                  opacity: 0.3
+                type: image
+            tap_action: none
+          - type: conditional
+            conditions:
+              - entity: sensor.date_month
+                state: "12"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Dec
+                style:
+                  left: 95.2%
+                  top: 70%
+                  width: 3%
+                  opacity: 0.3
+                type: image
+            tap_action: none
+
+
+#########################################
+####         Bottom Bar             #####
+#########################################
+
+          - action: none
+            image: /local/images/selection3.png
+            style:
+              border-radius: 5vw
+              left: 50%
+              top: 84.8%
+              width: 18%
+              transform: scale(1,1)
+            type: image
+
+          - !include sidebar/sb_achtergrond.yaml
+          - !include sidebar/sb_icon_huis.yaml
+          - !include sidebar/sb_icon_instellingen.yaml
+          - !include sidebar/sb_pending_update.yaml
+          - !include sidebar/sb_adguard.yaml
+          - !include sidebar/sb_icon_electric.yaml
+          - !include sidebar/sb_energy_melding_1.yaml
+          - !include sidebar/sb_energy_melding_2.yaml
+          - !include sidebar/sb_icon_speaker.yaml

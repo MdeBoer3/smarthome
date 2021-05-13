@@ -1,0 +1,708 @@
+#########################################
+####        Custom panels           ####
+#########################################
+
+### Afbeeldingen
+# Soundbar
+          - type: conditional          
+            conditions:
+              - entity: media_player.soundbar
+                state: "playing"
+            elements:
+              - image: /local/images/music02.gif
+                style:
+                  left: 18%
+                  top: 28%
+                  width: 28%
+                  opacity: 0.15
+                type: image
+                tap_action:
+                  action: none
+            tap_action: none
+          - action: none
+            entity: media_player.soundbar
+            image: /local/images/st300_3.png
+            state_filter:
+                "off": opacity(0.5)
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 18%
+              top: 28.5%
+              width: 30%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: media_player.soundbar
+# speaker
+          - type: conditional          
+            conditions:
+              - entity: media_player.grote_speaker
+                state: "playing"
+            elements:
+              - image: /local/images/music02.gif
+                style:
+                  left: 50%
+                  top: 28%
+                  width: 28%
+                  opacity: 0.15
+                type: image
+                tap_action:
+                  action: none
+            tap_action: none
+          - action: none
+            entity: media_player.grote_speaker
+            image: /local/images/st30.png
+            state_filter:
+                "off": opacity(0.5)
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 50%
+              top: 29%
+              width: 26%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: media_player.grote_speaker
+# kleine speaker
+          - type: conditional          
+            conditions:
+              - entity: media_player.kleine_speaker
+                state: "playing"
+            elements:
+              - image: /local/images/music02.gif
+                style:
+                  left: 82%
+                  top: 28%
+                  width: 28%
+                  opacity: 0.15
+                type: image
+                tap_action:
+                  action: none
+            tap_action: none
+# kleine speaker
+          - action: none
+            entity: media_player.kleine_speaker
+            image: /local/images/st10.png
+            state_filter:
+                "off": opacity(0.5)
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 82%
+              top: 28%
+              width: 20%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: media_player.kleine_speaker
+
+### Playback controls
+# soundbar
+          - type: conditional          
+            conditions:
+              - entity: media_player.soundbar
+                state_not: "off"
+            elements:
+              - type: custom:mini-media-player
+                entity: media_player.soundbar
+                info: short
+                hide:
+                  icon: true
+                  volume: true
+                  source: true
+                  info: true
+                  name: true
+                  power: true
+                style:
+                  left: 20%
+                  top: 16%
+                  width: 32%
+                  --ha-card-background: "rgba(0, 0, 0, 0)" 
+                  --ha-card-box-shadow: "rgba(0, 0, 0, 0)" 
+# speaker
+            tap_action: none
+          - type: conditional          
+            conditions:
+              - entity: media_player.grote_speaker
+                state_not: "off"
+            elements:
+              - type: custom:mini-media-player
+                entity: media_player.grote_speaker
+                info: short
+                hide:
+                  icon: true
+                  volume: true
+                  source: true
+                  info: true
+                  name: true
+                  power: true
+                style:
+                #   box-shadow: 'inset 0px 0px 35px black'
+                #   border-radius: 20px
+                  left: 50%
+                  top: 16%
+                  width: 32%
+                  --ha-card-background: "rgba(0, 0, 0, 0)" 
+                  --ha-card-box-shadow: "rgba(0, 0, 0, 0)" 
+            tap_action: none
+# kleine speaker
+          - type: conditional          
+            conditions:
+              - entity: media_player.kleine_speaker
+                state_not: "off"
+            elements:
+              - type: custom:mini-media-player
+                entity: media_player.kleine_speaker
+                info: short
+                hide:
+                  icon: true
+                  volume: true
+                  source: true
+                  info: true
+                  name: true
+                  power: true
+                style:
+                #   box-shadow: 'inset 0px 0px 35px black'
+                #   border-radius: 20px
+                  left: 85%
+                  top: 16%
+                  width: 34%
+                  --ha-card-background: "rgba(0, 0, 0, 0)" 
+                  --ha-card-box-shadow: "rgba(0, 0, 0, 0)" 
+            tap_action: none
+
+### Volume bars
+# Soundbar
+          - type: custom:mini-media-player
+            entity: media_player.soundbar
+            group: true
+            name: Grote speaker
+            hide:
+              power: true
+              icon: true
+              name: true
+              source: true
+              info: true
+              controls: true
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 18%
+              top: 39%
+              width: 30%
+# Speaker
+          - type: custom:mini-media-player
+            entity: media_player.grote_speaker
+            group: true
+            name: Grote speaker
+            hide:
+              power: true
+              icon: true
+              name: true
+              source: true
+              info: true
+              controls: true
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 50%
+              top: 39%
+              width: 30%
+# Kleine speaker
+          - type: custom:mini-media-player
+            entity: media_player.kleine_speaker
+            group: true
+            name: Grote speaker
+            hide:
+              power: true
+              icon: true
+              name: true
+              source: true
+              info: true
+              controls: true
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 82%
+              top: 39%
+              width: 30%
+
+
+### Albums
+# Relaxed remixed
+          - action: none
+            entity: input_boolean.album_relaxed
+            state_filter:
+                "on": opacity(0.5)
+                "off": opacity(1)
+            image: /local/images/album_relaxed.png
+            style:
+              box-shadow: 'inset 0px 0px 10px grey'
+              border-radius: 5px
+              left: 17.5%
+              top: 63%
+              width: 25%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.album_relaxed
+# Acoustic chill
+          - action: none
+            entity: input_boolean.album_chill
+            state_filter:
+                "on": opacity(0.5)
+                "off": opacity(1)
+            image: /local/images/album_chill.png
+            style:
+              box-shadow: 'inset 0px 0px 10px grey'
+              border-radius: 5px
+              left: 50%
+              top: 63%
+              width: 25%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.album_chill
+# Danny vera
+          - action: none
+            entity: input_boolean.album_danny
+            image: /local/images/album_danny.png
+            state_filter:
+                "on": opacity(0.5)
+                "off": opacity(1)
+            style:
+              box-shadow: 'inset 0px 0px 10px grey'
+              border-radius: 5px
+              left: 82.5%
+              top: 63%
+              width: 25%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.album_danny
+# Good vibes
+          - action: none
+            entity: input_boolean.album_good_vibes
+            state_filter:
+                "on": opacity(0.5)
+                "off": opacity(1)
+            image: /local/images/album_good_vibes.png
+            style:
+              box-shadow: 'inset 0px 0px 10px grey'
+              border-radius: 5px
+              left: 17.5%
+              top: 78%
+              width: 25%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.album_good_vibes
+# Friday feeling
+          - action: none
+            entity: input_boolean.album_friday
+            state_filter:
+                "on": opacity(0.5)
+                "off": opacity(1)
+            image: /local/images/album_friday.png
+            style:
+              box-shadow: 'inset 0px 0px 10px grey'
+              border-radius: 5px
+              left: 50%
+              top: 78%
+              width: 25%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.album_friday
+# Party
+          - action: none
+            entity: input_boolean.album_party
+            state_filter:
+                "on": opacity(0.5)
+                "off": opacity(1)
+            image: /local/images/album_party.png
+            style:
+              box-shadow: 'inset 0px 0px 10px grey'
+              border-radius: 5px
+              left: 82.5%
+              top: 78%
+              width: 25%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.album_party
+
+# Disco
+          - action: none
+            entity: input_boolean.disco
+            state_image:
+                "on": /local/images/discobal.gif
+            state_filter:
+                "off": opacity(0.5)
+                "on": opacity(1)
+            image: /local/images/discobal_stil.png
+            style:
+              left: 50%
+              top: 48%
+              width: 20%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.disco
+
+
+#########################################
+####            Side Bar            #####
+#########################################
+            
+            
+        #   - !include sidebar/sb_achtergrond.yaml
+          - image: /local/images/bar3.png
+            style:
+              box-shadow: '0px 0px 20px dimgray'
+              border-radius: 30px
+              height: 10%
+              left: 50%
+              top: 93%
+              width: 80%
+            tap_action:
+              action: none
+            type: image
+
+          - action: none
+            image: /local/images/selection3.png
+            style:
+              border-radius: 5vw
+              left: 31%
+              top: 89.2%
+              width: 20%
+              transform: scale(1,2)
+            type: image
+
+        #   - !include sidebar/sb_achtergrond2.yaml
+          - image: /local/images/bar3.png
+            style:
+              box-shadow: '0px 0px 20px dimgray'
+              border-radius: 30px
+              left: 50%
+              top: 4.5%
+              width: 160%
+              opacity: 0.6
+            tap_action:
+              action: none
+            type: image
+
+        #   - !include sidebar/sb_icon_huis.yaml
+          - image: /local/images/huis1.png
+            style:
+              left: 22%
+              top: 92.5%
+              width: 8%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/0
+            type: image
+
+        #   - !include sidebar/sb_icon_instellingen.yaml
+          - image: /local/images/instellingen.png
+            style:
+              left: 78%
+              top: 92.5%
+              width: 10%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/12
+            type: image
+
+        #   - !include sidebar/sb_pending_update.yaml
+          - type: conditional
+            conditions:
+              - entity: binary_sensor.updater
+                state: "on"
+            elements:
+              - image: /local/images/one_2.png
+                style:
+                  left: 82%
+                  top: 91%
+                  width: 6%
+                type: image
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/12
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/12
+
+        #   - !include sidebar/sb_adguard.yaml
+          - type: conditional
+            conditions:
+              - entity: switch.adguard_protection
+                state: "off"
+            elements:
+              - image: /local/images/one_2.png
+                style:
+                  left: 82%
+                  top: 91%
+                  width: 6%
+                type: image
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/12
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/12
+
+        #   - !include sidebar/sb_icon_electric.yaml
+          - image: /local/images/electric.png
+            style:
+              left: 59%
+              top: 92.7%
+              width: 11%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/11
+            type: image
+
+        #   - !include sidebar/sb_energy_melding_1.yaml
+          - type: conditional
+            conditions:
+              - entity: sensor.standby_high
+                state: "on"
+            elements:
+              - image: /local/images/one_2.png
+                style:
+                  left: 62%
+                  top: 91%
+                  width: 6%
+                type: image
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/11
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/11
+
+        #   - !include sidebar/sb_energy_melding_2.yaml
+          - type: conditional
+            conditions:
+              - entity: input_boolean.energy_hoog_verbruik
+                state: "on"
+            elements:
+              - image: /local/images/one_2.png
+                style:
+                  left: 62%
+                  top: 91%
+                  width: 6%
+                type: image
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/11
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/11
+
+        #   - !include sidebar/sb_icon_speaker.yaml
+          - image: /local/images/speaker.png
+            style:
+              left: 41%
+              top: 92.5%
+              width: 10%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/10
+            type: image
+
+          - !include sidebar/sb_weer_icon.yaml
+          - !include sidebar/sb_weer_plaats.yaml
+          
+          - !include sidebar/sb_wasmachine.yaml
+
+        #   - !include sidebar/sb_powerbar.yaml
+          - entity: input_number.energy_dag_0
+            max: 6
+            min: 0
+            direction: up
+            positions:
+              icon: 'off'
+              indicator: 'off'
+              name: 'off'
+              value: 'off'
+            severity:
+              - color: Green
+                from: 0
+                to: 2.5
+              - color: YellowGreen
+                from: 2.5
+                to: 2.9
+              - color: Gold
+                from: 3
+                to: 3.3
+              - color: Orange
+                from: 3.3
+                to: 3.9
+              - color: OrangeRed
+                from: 3.9
+                to: 4.5
+              - color: Firebrick
+                from: 4.5
+                to: 100
+            style: |
+              :host {
+                left: 26.5%;
+                top:  4%;
+                width: 14%;
+                height: 12.5%;
+                background: none !important;
+                box-shadow: none !important;
+                border-radius: 0.1vw;
+              }
+              ha-card {
+                height: 100%;
+                background: none !important;
+                box-shadow: none !important;
+                border-radius: 0.1vw;
+                font-size: 1.5vw !important;
+              }
+            tap_action:
+              action: none
+            type: 'custom:bar-card'
+
+        #   - !include sidebar/sb_powerstate.yaml
+          - type: conditional          
+            conditions:
+              - entity: input_boolean.energy_hoog_verbruik
+                state: 'off'
+            elements:
+              - icon: mdi:emoticon-excited-outline
+                style:
+                  left: 24.3%
+                  top: 4.7%
+                  width: 1.5%
+                  transform: scale(0.6,0.6)
+                type: icon
+                tap_action:
+                  action: none
+            tap_action:
+              action: none
+
+        #   - !include sidebar/sb_powerstate_2.yaml
+          - type: conditional          
+            conditions:
+              - entity: input_boolean.energy_hoog_verbruik
+                state: 'on'
+            elements:
+              - icon: mdi:emoticon-frown-outline
+                style:
+                  left: 24.3%
+                  top: 4.7%
+                  width: 1.5%
+                  transform: scale(0.6,0.6)
+                type: icon
+                tap_action:
+                  action: none
+            tap_action:
+              action: none
+
+        #   - !include sidebar/sb_tijd.yaml
+          - entity: sensor.time
+            type: state-label
+            style:
+                font-size: 1.8vmax
+                font-family: 'Poppins,sans-serif'
+                font-weight: 500
+                left: 6%
+                text-align: center
+                top: 1.5%
+                transform: scale(2,2)
+            tap_action:
+              action: none
+
+        #   - !include sidebar/sb_tijd_datum.yaml
+          - entity: sensor.date_long
+            style:
+              font-size: 2.8vw
+              font-weight: 150
+              left: 79%
+              top: 3.5%
+              color: lightgrey
+              transform: scale(1.15,1)
+            type: state-label
+            tap_action:
+              action: none
+
+        #   - !include sidebar/sb_dayoftheweek.yaml
+          - entity: sensor.dayoftheweek
+            style:
+              font-size: 4vw
+              font-weight: 350
+              left: 88.5%
+              text-align: right
+              top: 3.5%
+              color: lightgrey
+            type: state-label
+            tap_action:
+              action: none
+
+          - !include sidebar/sb_afval_rest.yaml
+          - !include sidebar/sb_afval_gft.yaml
+          - !include sidebar/sb_afval_plastic.yaml
+          - !include sidebar/sb_afval_papier.yaml
+          
+          - !include sidebar/sb_mason.yaml
+          - !include sidebar/sb_richelle.yaml
+
+        #   - !include sidebar/sb_visitor.yaml
+          - type: conditional
+            conditions:
+              - entity: input_boolean.gast
+                state: "on"
+            elements:
+              - image: /local/images/visitor2.png
+                style:
+                  left: 36%
+                  top: 10.5%
+                  width: 13%
+                  opacity: 0.8
+                type: image
+            tap_action: none
+
+        #   - !include sidebar/sb_alarm_state.yaml
+          - entity: alarm_control_panel.alarm
+            state_image:
+              'disarmed': /local/images/alarm-disarmed4.png
+              'armed_away': /local/images/alarm-armed4.png
+              'arming': /local/images/alarm-armed4.png
+              'pending': /local/images/alarm.gif
+              'triggered': /local/images/alarm.gif
+            style:
+              left: 36%
+              top: 5.5%
+              width: 11%
+            #   opacity: 1
+            tap_action:
+              action: call-service
+              service: alarm_control_panel.alarm_disarm
+              service_data:
+                entity_id: alarm_control_panel.alarm
+            double_tap_action:
+              action: call-service
+              service: alarm_control_panel.alarm_arm_away
+              service_data:
+                entity_id: alarm_control_panel.alarm
+            type: image

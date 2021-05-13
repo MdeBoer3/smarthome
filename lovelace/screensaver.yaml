@@ -1,0 +1,49 @@
+# Klok
+          - type: "custom:clock-card"
+            size: 900
+            disable_seconds: true
+            display_date: false #"DD MMMM YYYY"
+            style:
+                left: 50%
+                top: 50%
+                --ha-card-background: "rgba(0, 0, 0, 0)" 
+                border-radius: 400px
+            theme:
+              background: black
+              hands: peru
+              numbers: white
+              border: black
+
+# Thermostaat
+          - type: custom:thermostat-card
+            entity: climate.woonkamer_2
+            title: " "
+            no_card: true
+            style: |
+              :host {
+                left: 91%;
+                top:  12%;
+                width: 18%;
+                overflow: hidden;
+                background: none  !important;
+                box-shadow: none !important;
+              }
+              ha-card {
+                background: none  !important;
+                box-shadow: none !important;
+                # transform: scale(1.1, 1.1);
+                padding: 0 !important;
+              }
+
+# Knop naar homescreen
+          - type: image
+            image: /local/images/transparent.gif
+            style:
+              left: 50%
+              top: 50%
+              width: 110%
+              height: 110%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/1/
+

@@ -1,0 +1,87 @@
+#########################################
+####        Custom panels           ####
+#########################################
+
+          - type: 'custom:card-templater'
+            card:
+              type: history-graph
+            #   title: 'Energy'
+              entities:
+              - entity: sensor.woonkamer_room_temperature
+                name: Woonkamer
+              - entity: sensor.temperature_eetkamer_filter
+                name: Eetkamer
+              - entity: sensor.keuken_sensor_temperature_filter
+                name: Keuken
+              - entity: sensor.gang_sensor_temperature_filter
+                name: Gang
+              - entity: sensor.wc_sensor_temperature_filter
+                name: Wc
+            style:
+              left: 0%
+              top:  17%
+              width: 100%
+              transform: scale(1,1.15)
+              --ha-card-background: "rgba(0, 0, 0, 0)" 
+              --ha-card-box-shadow: "rgba(0, 0, 0, 0)" 
+
+          - type: 'custom:card-templater'
+            card:
+              type: history-graph
+            #   title: 'Energy'
+              entities:
+              - entity: sensor.slaapkamer_room_temperature
+                name: Slaapkamer
+              - entity: sensor.badkamer_temp_adj_filter
+                name: Badkamer
+              - entity: sensor.overloop_sensor_temperature_filter
+                name: Overloop
+              - entity: sensor.wasruimte_sensor_temperature_filter
+                name: Washok
+              - entity: sensor.overloop_zolder_sensor_temperature_filter
+                name: Zolder
+            style:
+              left: 0%
+              top:  52%
+              width: 100%
+              transform: scale(1,1.15)
+              --ha-card-background: "rgba(0, 0, 0, 0)" 
+              --ha-card-box-shadow: "rgba(0, 0, 0, 0)" 
+
+
+#########################################
+####            Side Bar            #####
+#########################################
+            
+          - !include sidebar/sb_achtergrond.yaml
+          - !include sidebar/sb_achtergrond2.yaml
+          - !include sidebar/sb_icon_huis.yaml
+          - !include sidebar/sb_icon_instellingen.yaml
+          - !include sidebar/sb_pending_update.yaml
+          - !include sidebar/sb_adguard.yaml
+          - !include sidebar/sb_icon_electric.yaml
+          - !include sidebar/sb_energy_melding_1.yaml
+          - !include sidebar/sb_energy_melding_2.yaml
+          - !include sidebar/sb_icon_speaker.yaml
+          
+          - !include sidebar/sb_weer_icon.yaml
+          - !include sidebar/sb_weer_plaats.yaml
+          
+          - !include sidebar/sb_wasmachine.yaml
+          - !include sidebar/sb_powerbar.yaml
+          - !include sidebar/sb_powerstate.yaml
+          - !include sidebar/sb_powerstate_2.yaml
+          
+          - !include sidebar/sb_tijd.yaml
+          - !include sidebar/sb_tijd_datum.yaml
+          - !include sidebar/sb_dayoftheweek.yaml
+          
+          - !include sidebar/sb_afval_rest.yaml
+          - !include sidebar/sb_afval_gft.yaml
+          - !include sidebar/sb_afval_plastic.yaml
+          - !include sidebar/sb_afval_papier.yaml
+          
+          - !include sidebar/sb_mason.yaml
+          - !include sidebar/sb_richelle.yaml
+          - !include sidebar/sb_visitor.yaml
+          - !include sidebar/sb_alarm_state.yaml

@@ -1,0 +1,520 @@
+#########################################
+####            Top Bar             #####
+#########################################
+
+          - !include sidebar/sb_achtergrond2.yaml
+          - !include sidebar/sb_weer_icon.yaml
+          - !include sidebar/sb_weer_plaats.yaml
+          
+          - !include sidebar/sb_wasmachine.yaml
+          - !include sidebar/sb_powerbar.yaml
+          - !include sidebar/sb_powerstate.yaml
+          - !include sidebar/sb_powerstate_2.yaml
+          
+          - !include sidebar/sb_tijd.yaml
+          - !include sidebar/sb_tijd_datum.yaml
+          - !include sidebar/sb_dayoftheweek.yaml
+          
+          - !include sidebar/sb_afval_rest.yaml
+          - !include sidebar/sb_afval_gft.yaml
+          - !include sidebar/sb_afval_plastic.yaml
+          - !include sidebar/sb_afval_papier.yaml
+          
+          - !include sidebar/sb_mason.yaml
+          - !include sidebar/sb_richelle.yaml
+          - !include sidebar/sb_visitor.yaml
+          - !include sidebar/sb_alarm_state.yaml
+
+
+#########################################
+####        Custom panels           ####
+#########################################
+
+          - image: /local/images/shadowline.png
+            style:
+            #   box-shadow: 'inset 0px 0px 30px black'
+            #   box-shadow: '0px 0px 50px black'
+            #   border-radius: '25px'
+            #   background: 'none'
+              opacity: 0.5
+            #   height: 1%
+              left: 0%
+              top: 39.5%
+              width: 100%
+              transform: scale(1,0.3)
+            tap_action:
+              action: none
+            type: image
+
+### Afbeeldingen
+# Soundbar
+          - type: conditional          
+            conditions:
+              - entity: media_player.soundbar
+                state: "playing"
+            elements:
+              - image: /local/images/music02.gif
+                style:
+                  left: 18%
+                  top: 28%
+                  width: 28%
+                  opacity: 0.15
+                type: image
+                tap_action:
+                  action: none
+            tap_action: none
+          - action: none
+            entity: media_player.soundbar
+            image: /local/images/st300_3.png
+            state_filter:
+                "off": opacity(0.5)
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 18%
+              top: 28.5%
+              width: 22%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: media_player.soundbar
+# speaker
+          - type: conditional          
+            conditions:
+              - entity: media_player.grote_speaker
+                state: "playing"
+            elements:
+              - image: /local/images/music02.gif
+                style:
+                  left: 50%
+                  top: 28%
+                  width: 28%
+                  opacity: 0.15
+                type: image
+                tap_action:
+                  action: none
+            tap_action: none
+          - action: none
+            entity: media_player.grote_speaker
+            image: /local/images/st30.png
+            state_filter:
+                "off": opacity(0.5)
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 50%
+              top: 29%
+              width: 18%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: media_player.grote_speaker
+# kleine speaker
+          - type: conditional          
+            conditions:
+              - entity: media_player.kleine_speaker
+                state: "playing"
+            elements:
+              - image: /local/images/music02.gif
+                style:
+                  left: 82%
+                  top: 28%
+                  width: 28%
+                  opacity: 0.15
+                type: image
+                tap_action:
+                  action: none
+            tap_action: none
+# kleine speaker
+          - action: none
+            entity: media_player.kleine_speaker
+            image: /local/images/st10.png
+            state_filter:
+                "off": opacity(0.5)
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 82%
+              top: 28%
+              width: 11%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: media_player.kleine_speaker
+
+### Playback controls
+# soundbar
+          - type: conditional          
+            conditions:
+              - entity: media_player.soundbar
+                state_not: "off"
+            elements:
+              - type: custom:mini-media-player
+                entity: media_player.soundbar
+                info: short
+                hide:
+                  icon: false
+                  volume: true
+                  source: true
+                  info: false
+                  name: true
+                  power: true
+                style:
+                  left: 18%
+                  top: 17%
+                  width: 32%
+                  --ha-card-background: "rgba(0, 0, 0, 0)" 
+                  --ha-card-box-shadow: "rgba(0, 0, 0, 0)" 
+# speaker
+            tap_action: none
+          - type: conditional          
+            conditions:
+              - entity: media_player.grote_speaker
+                state_not: "off"
+            elements:
+              - type: custom:mini-media-player
+                entity: media_player.grote_speaker
+                info: short
+                hide:
+                  icon: false
+                  volume: true
+                  source: true
+                  info: false
+                  name: true
+                  power: true
+                style:
+                #   box-shadow: 'inset 0px 0px 35px black'
+                #   border-radius: 20px
+                  left: 50%
+                  top: 17%
+                  width: 32%
+                  --ha-card-background: "rgba(0, 0, 0, 0)" 
+                  --ha-card-box-shadow: "rgba(0, 0, 0, 0)" 
+            tap_action: none
+# kleine speaker
+          - type: conditional          
+            conditions:
+              - entity: media_player.kleine_speaker
+                state_not: "off"
+            elements:
+              - type: custom:mini-media-player
+                entity: media_player.kleine_speaker
+                info: short
+                hide:
+                  icon: false
+                  volume: true
+                  source: true
+                  info: false
+                  name: true
+                  power: true
+                style:
+                #   box-shadow: 'inset 0px 0px 35px black'
+                #   border-radius: 20px
+                  left: 82%
+                  top: 17%
+                  width: 32%
+                  --ha-card-background: "rgba(0, 0, 0, 0)" 
+                  --ha-card-box-shadow: "rgba(0, 0, 0, 0)" 
+            tap_action: none
+
+### Volume bars
+# Soundbar
+          - type: custom:mini-media-player
+            entity: media_player.soundbar
+            group: true
+            name: Soundbar
+            hide:
+              power: true
+              icon: true
+              name: true
+              source: true
+              info: true
+              controls: true
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 18%
+              top: 39%
+              width: 30%
+# Speaker
+          - type: custom:mini-media-player
+            entity: media_player.grote_speaker
+            group: true
+            name: Grote speaker
+            hide:
+              power: true
+              icon: true
+              name: true
+              source: true
+              info: true
+              controls: true
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 50%
+              top: 39%
+              width: 30%
+# Kleine speaker
+          - type: custom:mini-media-player
+            entity: media_player.kleine_speaker
+            group: true
+            name: Kleine speaker
+            hide:
+              power: true
+              icon: true
+              name: true
+              source: true
+              info: true
+              controls: true
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 82%
+              top: 39%
+              width: 30%
+
+
+### Albums
+# Relaxed remixed
+          - action: none
+            entity: input_boolean.album_relaxed
+            state_filter:
+                "on": opacity(0.5)
+                "off": opacity(1)
+            image: /local/images/album_relaxed.png
+            style:
+              box-shadow: 'inset 0px 0px 10px grey'
+              border-radius: 5px
+              left: 10%
+              top: 72%
+              width: 15%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.album_relaxed
+          - type: conditional
+            conditions:
+              - entity: input_boolean.album_relaxed
+                state: "on"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Dec
+                style:
+                  left: 10%
+                  top: 72%
+                  width: 3%
+                  opacity: 0.5
+                type: image
+            tap_action: none
+# Acoustic chill
+          - action: none
+            entity: input_boolean.album_chill
+            state_filter:
+                "on": opacity(0.5)
+                "off": opacity(1)
+            image: /local/images/album_chill.png
+            style:
+              box-shadow: 'inset 0px 0px 10px grey'
+              border-radius: 5px
+              left: 26%
+              top: 72%
+              width: 15%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.album_chill
+          - type: conditional
+            conditions:
+              - entity: input_boolean.album_chill
+                state: "on"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Dec
+                style:
+                  left: 26%
+                  top: 72%
+                  width: 3%
+                  opacity: 0.5
+                type: image
+            tap_action: none
+# Danny vera
+          - action: none
+            entity: input_boolean.album_danny
+            image: /local/images/album_danny.png
+            state_filter:
+                "on": opacity(0.5)
+                "off": opacity(1)
+            style:
+              box-shadow: 'inset 0px 0px 10px grey'
+              border-radius: 5px
+              left: 42%
+              top: 72%
+              width: 15%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.album_danny
+          - type: conditional
+            conditions:
+              - entity: input_boolean.album_danny
+                state: "on"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Dec
+                style:
+                  left: 42%
+                  top: 72%
+                  width: 3%
+                  opacity: 0.5
+                type: image
+            tap_action: none
+# Good vibes
+          - action: none
+            entity: input_boolean.album_good_vibes
+            state_filter:
+                "on": opacity(0.5)
+                "off": opacity(1)
+            image: /local/images/album_good_vibes.png
+            style:
+              box-shadow: 'inset 0px 0px 10px grey'
+              border-radius: 5px
+              left: 58%
+              top: 72%
+              width: 15%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.album_good_vibes
+          - type: conditional
+            conditions:
+              - entity: input_boolean.album_good_vibes
+                state: "on"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Dec
+                style:
+                  left: 58%
+                  top: 72%
+                  width: 3%
+                  opacity: 0.5
+                type: image
+            tap_action: none
+# Friday feeling
+          - action: none
+            entity: input_boolean.album_friday
+            state_filter:
+                "on": opacity(0.5)
+                "off": opacity(1)
+            image: /local/images/album_friday.png
+            style:
+              box-shadow: 'inset 0px 0px 10px grey'
+              border-radius: 5px
+              left: 74%
+              top: 72%
+              width: 15%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.album_friday
+          - type: conditional
+            conditions:
+              - entity: input_boolean.album_friday
+                state: "on"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Dec
+                style:
+                  left: 74%
+                  top: 72%
+                  width: 3%
+                  opacity: 0.5
+                type: image
+            tap_action: none
+# Party
+          - action: none
+            entity: input_boolean.album_party
+            state_filter:
+                "on": opacity(0.5)
+                "off": opacity(1)
+            image: /local/images/album_party.png
+            style:
+              box-shadow: 'inset 0px 0px 10px grey'
+              border-radius: 5px
+              left: 90%
+              top: 72%
+              width: 15%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.album_party
+          - type: conditional
+            conditions:
+              - entity: input_boolean.album_party
+                state: "on"
+            elements:
+              - action: none
+                image: /local/images/refresh.gif    # Dec
+                style:
+                  left: 90%
+                  top: 72%
+                  width: 3%
+                  opacity: 0.5
+                type: image
+            tap_action: none
+
+# Disco
+          - action: none
+            entity: input_boolean.disco
+            state_image:
+                "on": /local/images/discobal.gif
+            state_filter:
+                "off": opacity(0.5)
+                "on": opacity(1)
+            image: /local/images/discobal_stil.png
+            style:
+              left: 50%
+              top: 52%
+              width: 10%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.disco
+
+
+#########################################
+####         Bottom Bar             #####
+#########################################
+
+          - action: none
+            image: /local/images/selection3.png
+            style:
+              border-radius: 5vw
+              left: 32%
+              top: 84.8%
+              width: 18%
+              transform: scale(1,1)
+            type: image
+
+          - !include sidebar/sb_achtergrond.yaml
+          - !include sidebar/sb_icon_huis.yaml
+          - !include sidebar/sb_icon_instellingen.yaml
+          - !include sidebar/sb_pending_update.yaml
+          - !include sidebar/sb_adguard.yaml
+          - !include sidebar/sb_icon_electric.yaml
+          - !include sidebar/sb_energy_melding_1.yaml
+          - !include sidebar/sb_energy_melding_2.yaml
+          - !include sidebar/sb_icon_speaker.yaml

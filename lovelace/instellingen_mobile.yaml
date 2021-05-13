@@ -1,0 +1,984 @@
+#########################################
+####        Custom panels           ####
+#########################################
+
+# ####    HVAC-mode instellingen
+# # woonkamer settings
+#           - style:
+#               font-size: 3vw
+#               font-weight: 450
+#               left: 17%
+#               text-align: center
+#               top: 26.5%
+#               color: lightgrey
+#             tap_action:
+#               action: none
+#             text: 'Woonkamer'
+#             type: custom:text-element
+#           - style:
+#               font-size: 1.8vw
+#               font-weight: 350
+#               left: 10%
+#               text-align: center
+#               top: 31.5%
+#             tap_action:
+#               action: none
+#             text: 'Stand-by'
+#             type: custom:text-element
+#           - style:
+#               font-size: 1.8vw
+#               font-weight: 350
+#               left: 24%
+#               text-align: center
+#               top: 31.5%
+#             tap_action:
+#               action: none
+#             text: 'Verwarmen'
+#             type: custom:text-element
+#           - type: custom:numberbox-card
+#             entity: input_number.wk_comf_low
+#             name: false
+#             style:
+#               --ha-card-background: "rgba(0, 0, 0, 0)" 
+#               left: 10%
+#               top: 36%
+#           - type: custom:numberbox-card
+#             entity: input_number.wk_comf_high
+#             name: false
+#             style:
+#               --ha-card-background: "rgba(0, 0, 0, 0)" 
+#               left: 24%
+#               top: 36%
+# # slaapkamer settings
+#           - style:
+#               font-size: 3vw
+#               font-weight: 450
+#               left: 50%
+#               text-align: center
+#               top: 26.5%
+#               color: lightgrey
+#             tap_action:
+#               action: none
+#             text: 'Slaapkamer'
+#             type: custom:text-element
+#           - style:
+#               font-size: 1.8vw
+#               font-weight: 350
+#               left: 43%
+#               text-align: center
+#               top: 31.5%
+#             tap_action:
+#               action: none
+#             text: 'Stand-by'
+#             type: custom:text-element
+#           - style:
+#               font-size: 1.8vw
+#               font-weight: 350
+#               left: 57%
+#               text-align: center
+#               top: 31.5%
+#             tap_action:
+#               action: none
+#             text: 'Verwarmen'
+#             type: custom:text-element
+#           - type: custom:numberbox-card
+#             entity: input_number.sk_comf_low
+#             name: false
+#             style:
+#               --ha-card-background: "rgba(0, 0, 0, 0)" 
+#               left: 43%
+#               top: 36%
+#           - type: custom:numberbox-card
+#             entity: input_number.sk_comf_high
+#             name: false
+#             style:
+#               --ha-card-background: "rgba(0, 0, 0, 0)" 
+#               left: 57%
+#               top: 36%
+# # badkamer settings
+#           - style:
+#               font-size: 3vw
+#               font-weight: 450
+#               left: 84%
+#               text-align: center
+#               top: 26%
+#               color: lightgrey
+#             tap_action:
+#               action: none
+#             text: 'Badkamer'
+#             type: custom:text-element
+#           - style:
+#               font-size: 1.8vw
+#               font-weight: 350
+#               left: 76%
+#               text-align: center
+#               top: 31.5%
+#             tap_action:
+#               action: none
+#             text: 'Stand-by'
+#             type: custom:text-element
+#           - style:
+#               font-size: 1.8vw
+#               font-weight: 350
+#               left: 90%
+#               text-align: center
+#               top: 31.5%
+#             tap_action:
+#               action: none
+#             text: 'Verwarmen'
+#             type: custom:text-element
+#           - type: custom:numberbox-card
+#             entity: input_number.bk_comf_low
+#             name: false
+#             style:
+#               --ha-card-background: "rgba(0, 0, 0, 0)" 
+#               left: 76%
+#               top: 36%
+#           - type: custom:numberbox-card
+#             entity: input_number.bk_comf_high
+#             name: false
+#             style:
+#               --ha-card-background: "rgba(0, 0, 0, 0)" 
+#               left: 90%
+#               top: 36%
+
+####    Titels
+          - style:
+              font-size: 7vw
+              font-weight: 550
+              left: 25%
+              text-align: center
+              top: 19%
+              color: lightgrey
+            tap_action:
+              action: none
+            text: 'HVAC'
+            type: custom:text-element
+          - style:
+              font-size: 7vw
+              font-weight: 550
+              left: 75%
+              text-align: center
+              top: 19%
+              color: lightgrey
+            tap_action:
+              action: none
+            text: 'Algemeen'
+            type: custom:text-element
+          - style:
+              font-size: 7vw
+              font-weight: 550
+              left: 25%
+              text-align: center
+              top: 50%
+              color: lightgrey
+            tap_action:
+              action: none
+            text: "Programma's"
+            type: custom:text-element
+
+####    colom hvac
+# Eco
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 2% #25
+              text-align: center
+              top: 23.5% #20
+              transform: none
+            tap_action:
+              action: none
+            text: 'Eco modus'
+            type: custom:text-element
+          - type: image
+            entity: input_boolean.eco
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 45%     #+19
+              top: 25%    #+1.5
+              width: 10%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.eco
+# Turbo
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 2%
+              text-align: center
+              top: 29.5%
+              transform: none
+            tap_action:
+              action: none
+            text: 'Turbo modus'
+            type: custom:text-element
+          - type: image
+            entity: input_boolean.turbo
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 45%
+              top: 31%
+              width: 10%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.turbo
+# Weerafhankelijk
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 2%
+              text-align: center
+              top: 35.5%
+              transform: none
+            tap_action:
+              action: none
+            text: 'Weersafhankelijk'
+            type: custom:text-element
+          - type: image
+            entity: input_boolean.weersafhankelijkheid
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 45%
+              top: 37%
+              width: 10%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.weersafhankelijkheid
+# Koelen
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 2%
+              text-align: center
+              top: 41.5%
+              transform: none
+            tap_action:
+              action: none
+            text: 'Koelen'
+            type: custom:text-element
+          - type: image
+            entity: input_boolean.koelen
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 45%
+              top: 43%
+              width: 10%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.koelen
+
+####    colom algemeen
+# Gast
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 55%
+              text-align: center
+              top: 23.5%
+              transform: none
+            tap_action:
+              action: none
+            text: 'Gast modus'
+            type: custom:text-element
+          - type: image
+            entity: input_boolean.gast
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 94%
+              top: 25%
+              width: 10%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.gast
+# Vakantie
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 55%
+              text-align: center
+              top: 29.5%
+              transform: none
+            tap_action:
+              action: none
+            text: 'Vakantie'
+            type: custom:text-element
+          - type: image
+            entity: input_boolean.vakantie
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 94%
+              top: 31%
+              width: 10%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.vakantie
+# AdGuard
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 55%
+              text-align: center
+              top: 35.5%
+              transform: none
+            tap_action:
+              action: none
+            text: 'AdGuard'
+            type: custom:text-element
+          - type: image
+            entity: switch.adguard_protection
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 94%
+              top: 37%
+              width: 10%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: switch.adguard_protection
+# iPad oplader
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 55%
+              text-align: center
+              top: 41.5%
+              transform: none
+            tap_action:
+              action: none
+            text: 'iPad oplader'
+            type: custom:text-element
+          - type: image
+            entity: switch.ipad_oplader
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 94%
+              top: 43%
+              width: 10%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: switch.ipad_oplader
+
+####    colom programmas
+# Auto Radio
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 2%
+              text-align: center
+              top: 54.5%
+              transform: none
+            tap_action:
+              action: none
+            text: 'Autom. muziek'
+            type: custom:text-element
+          - type: image
+            entity: automation.woonkamer_automatische_radio
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 45%
+              top: 56%
+              width: 10%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: automation.woonkamer_automatische_radio
+# Auto verlichting
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 2%
+              text-align: center
+              top: 60.5%
+              transform: none
+            tap_action:
+              action: none
+            text: 'Autom. verlichting'
+            type: custom:text-element
+          - type: image
+            entity: automation.woonkamer_automatische_lampen
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 45%
+              top: 62%
+              width: 10%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: automation.woonkamer_automatische_lampen
+# Auto eco
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 2%
+              text-align: center
+              top: 66.5%
+              transform: none
+            tap_action:
+              action: none
+            text: 'Autom. eco-mode'
+            type: custom:text-element
+          - type: image
+            entity: automation.energie_automatische_eco_stand
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 45%
+              top: 68%
+              width: 10%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: automation.energie_automatische_eco_stand
+# Auto rolluik
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 2%
+              text-align: center
+              top: 72.5%
+              transform: none
+            tap_action:
+              action: none
+            text: 'Autom. rolluiken'
+            type: custom:text-element
+          - type: image
+            entity: automation.systeem_rolluiken
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 45%
+              top: 74%
+              width: 10%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: automation.systeem_rolluiken
+# # Auto ---
+#           - style:
+#               font-size: 1.8vw
+#               font-weight: 350
+#               left: 74%
+#               text-align: center
+#               top: 80.5%
+#               transform: none
+#             tap_action:
+#               action: none
+#             text: 'Autom. sproeien'
+#             type: custom:text-element
+#           - type: image
+#             entity: automation.systeem_rolluiken
+#             state_image:
+#               'on': /local/images/switch_on.png
+#               'off': /local/images/switch_off.png
+#             style:
+#               box-shadow: '0px 0px 10px black'
+#               border-radius: 35px
+#               left: 93%
+#               top: 82%
+#               width: 3.5%
+#             tap_action:
+#               action: call-service
+#               service: homeassistant.toggle
+#               service_data:
+#                 entity_id: automation.systeem_rolluiken
+
+####    Onderste knoppen
+# Reboot
+          - type: image
+            image: /local/images/reboot.png
+            style:
+              box-shadow: '0px 0px 4px green'
+              border-radius: 50px
+              left: 75%
+              top: 70%
+              width: 15%
+            double_tap_action:
+              action: call-service
+              service: homeassistant.restart
+
+# Camera
+          - type: image
+            image: /local/images/camera.png
+            style:
+            #   box-shadow: '0px 0px 10px black'
+            #   border-radius: 5px
+              left: 75%
+              top: 55%
+              width: 15%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/13/
+
+####    Melding
+          - type: conditional          
+            conditions:
+              - entity: binary_sensor.updater
+                state: 'on'
+            elements:
+              - type: image
+                image: /local/images/black-100-100.png
+                style:
+                  left: 50%
+                  top: 13%
+                  width: 90%
+                  height: 7%
+                  opacity: 0.1
+                  box-shadow: '0px 0px 20px dimgrey, 0px 0px 20px dimgrey, 0px 0px 10px dimgrey, 0px 0px 10px dimgrey'
+                  border-radius: 25px
+              - type: image
+                image: /local/images/info.png
+                style:
+                  left: 11%
+                  top: 13%
+                  width: 6%
+              - style:
+                  font-size: 4.5vw
+                  font-weight: 350
+                  left: 52%
+                  text-align: center
+                  color: lightgrey
+                  top: 13%
+                  width: 90%
+                text: 'Home Assistant update beschikbaar'
+                type: custom:text-element
+            tap_action: none
+          - type: conditional          
+            conditions:
+              - entity: switch.adguard_protection
+                state: 'off'
+              - entity: binary_sensor.updater
+                state: 'off'
+            elements:
+              - type: image
+                image: /local/images/black-100-100.png
+                style:
+                  left: 50%
+                  top: 13%
+                  width: 69%
+                  height: 7%
+                  opacity: 0.1
+                  box-shadow: '0px 0px 20px dimgrey, 0px 0px 20px dimgrey, 0px 0px 10px dimgrey, 0px 0px 10px dimgrey'
+                  border-radius: 25px
+              - type: image
+                image: /local/images/info.png
+                style:
+                  left: 23%
+                  top: 13%
+                  width: 6%
+              - style:
+                  font-size: 4.5vw
+                  font-weight: 350
+                  left: 52%
+                  text-align: center
+                  color: lightgrey
+                  top: 13%
+                  width: 70%
+                text: 'AdGuard is uitgeschakeld'
+                type: custom:text-element
+            tap_action: none
+
+
+#########################################
+####            Side Bar            #####
+#########################################
+            
+            
+        #   - !include sidebar/sb_achtergrond.yaml
+          - image: /local/images/bar3.png
+            style:
+              box-shadow: '0px 0px 20px dimgray'
+              border-radius: 30px
+              height: 10%
+              left: 50%
+              top: 93%
+              width: 80%
+            tap_action:
+              action: none
+            type: image
+
+          - action: none
+            image: /local/images/selection3.png
+            style:
+              border-radius: 5vw
+              left: 68%
+              top: 89.2%
+              width: 20%
+              transform: scale(1,2)
+            type: image
+
+        #   - !include sidebar/sb_achtergrond2.yaml
+          - image: /local/images/bar3.png
+            style:
+              box-shadow: '0px 0px 20px dimgray'
+              border-radius: 30px
+              left: 50%
+              top: 4.5%
+              width: 160%
+              opacity: 0.6
+            tap_action:
+              action: none
+            type: image
+
+        #   - !include sidebar/sb_icon_huis.yaml
+          - image: /local/images/huis1.png
+            style:
+              left: 22%
+              top: 92.5%
+              width: 8%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/0
+            type: image
+
+        #   - !include sidebar/sb_icon_instellingen.yaml
+          - image: /local/images/instellingen.png
+            style:
+              left: 78%
+              top: 92.5%
+              width: 10%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/12
+            type: image
+
+        #   - !include sidebar/sb_pending_update.yaml
+          - type: conditional
+            conditions:
+              - entity: binary_sensor.updater
+                state: "on"
+            elements:
+              - image: /local/images/one_2.png
+                style:
+                  left: 82%
+                  top: 91%
+                  width: 6%
+                type: image
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/12
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/12
+
+        #   - !include sidebar/sb_adguard.yaml
+          - type: conditional
+            conditions:
+              - entity: switch.adguard_protection
+                state: "off"
+            elements:
+              - image: /local/images/one_2.png
+                style:
+                  left: 82%
+                  top: 91%
+                  width: 6%
+                type: image
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/12
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/12
+
+        #   - !include sidebar/sb_icon_electric.yaml
+          - image: /local/images/electric.png
+            style:
+              left: 59%
+              top: 92.7%
+              width: 11%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/11
+            type: image
+
+        #   - !include sidebar/sb_energy_melding_1.yaml
+          - type: conditional
+            conditions:
+              - entity: sensor.standby_high
+                state: "on"
+            elements:
+              - image: /local/images/one_2.png
+                style:
+                  left: 62%
+                  top: 91%
+                  width: 6%
+                type: image
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/11
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/11
+
+        #   - !include sidebar/sb_energy_melding_2.yaml
+          - type: conditional
+            conditions:
+              - entity: input_boolean.energy_hoog_verbruik
+                state: "on"
+            elements:
+              - image: /local/images/one_2.png
+                style:
+                  left: 62%
+                  top: 91%
+                  width: 6%
+                type: image
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/11
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/11
+
+        #   - !include sidebar/sb_icon_speaker.yaml
+          - image: /local/images/speaker.png
+            style:
+              left: 41%
+              top: 92.5%
+              width: 10%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/10
+            type: image
+
+          - !include sidebar/sb_weer_icon.yaml
+          - !include sidebar/sb_weer_plaats.yaml
+          
+          - !include sidebar/sb_wasmachine.yaml
+
+        #   - !include sidebar/sb_powerbar.yaml
+          - entity: input_number.energy_dag_0
+            max: 6
+            min: 0
+            direction: up
+            positions:
+              icon: 'off'
+              indicator: 'off'
+              name: 'off'
+              value: 'off'
+            severity:
+              - color: Green
+                from: 0
+                to: 2.5
+              - color: YellowGreen
+                from: 2.5
+                to: 2.9
+              - color: Gold
+                from: 3
+                to: 3.3
+              - color: Orange
+                from: 3.3
+                to: 3.9
+              - color: OrangeRed
+                from: 3.9
+                to: 4.5
+              - color: Firebrick
+                from: 4.5
+                to: 100
+            style: |
+              :host {
+                left: 26.5%;
+                top:  4%;
+                width: 14%;
+                height: 12.5%;
+                background: none !important;
+                box-shadow: none !important;
+                border-radius: 0.1vw;
+              }
+              ha-card {
+                height: 100%;
+                background: none !important;
+                box-shadow: none !important;
+                border-radius: 0.1vw;
+                font-size: 1.5vw !important;
+              }
+            tap_action:
+              action: none
+            type: 'custom:bar-card'
+
+        #   - !include sidebar/sb_powerstate.yaml
+          - type: conditional          
+            conditions:
+              - entity: input_boolean.energy_hoog_verbruik
+                state: 'off'
+            elements:
+              - icon: mdi:emoticon-excited-outline
+                style:
+                  left: 24.3%
+                  top: 4.7%
+                  width: 1.5%
+                  transform: scale(0.6,0.6)
+                type: icon
+                tap_action:
+                  action: none
+            tap_action:
+              action: none
+
+        #   - !include sidebar/sb_powerstate_2.yaml
+          - type: conditional          
+            conditions:
+              - entity: input_boolean.energy_hoog_verbruik
+                state: 'on'
+            elements:
+              - icon: mdi:emoticon-frown-outline
+                style:
+                  left: 24.3%
+                  top: 4.7%
+                  width: 1.5%
+                  transform: scale(0.6,0.6)
+                type: icon
+                tap_action:
+                  action: none
+            tap_action:
+              action: none
+
+        #   - !include sidebar/sb_tijd.yaml
+          - entity: sensor.time
+            type: state-label
+            style:
+                font-size: 1.8vmax
+                font-family: 'Poppins,sans-serif'
+                font-weight: 500
+                left: 6%
+                text-align: center
+                top: 1.5%
+                transform: scale(2,2)
+            tap_action:
+              action: none
+
+        #   - !include sidebar/sb_tijd_datum.yaml
+          - entity: sensor.date_long
+            style:
+              font-size: 2.8vw
+              font-weight: 150
+              left: 79%
+              top: 3.5%
+              color: lightgrey
+              transform: scale(1.15,1)
+            type: state-label
+            tap_action:
+              action: none
+
+        #   - !include sidebar/sb_dayoftheweek.yaml
+          - entity: sensor.dayoftheweek
+            style:
+              font-size: 4vw
+              font-weight: 350
+              left: 88.5%
+              text-align: right
+              top: 3.5%
+              color: lightgrey
+            type: state-label
+            tap_action:
+              action: none
+
+          - !include sidebar/sb_afval_rest.yaml
+          - !include sidebar/sb_afval_gft.yaml
+          - !include sidebar/sb_afval_plastic.yaml
+          - !include sidebar/sb_afval_papier.yaml
+          
+          - !include sidebar/sb_mason.yaml
+          - !include sidebar/sb_richelle.yaml
+
+        #   - !include sidebar/sb_visitor.yaml
+          - type: conditional
+            conditions:
+              - entity: input_boolean.gast
+                state: "on"
+            elements:
+              - image: /local/images/visitor2.png
+                style:
+                  left: 36%
+                  top: 10.5%
+                  width: 13%
+                  opacity: 0.8
+                type: image
+            tap_action: none
+
+        #   - !include sidebar/sb_alarm_state.yaml
+          - entity: alarm_control_panel.alarm
+            state_image:
+              'disarmed': /local/images/alarm-disarmed4.png
+              'armed_away': /local/images/alarm-armed4.png
+              'arming': /local/images/alarm-armed4.png
+              'pending': /local/images/alarm.gif
+              'triggered': /local/images/alarm.gif
+            style:
+              left: 36%
+              top: 5.5%
+              width: 11%
+            #   opacity: 1
+            tap_action:
+              action: call-service
+              service: alarm_control_panel.alarm_disarm
+              service_data:
+                entity_id: alarm_control_panel.alarm
+            double_tap_action:
+              action: call-service
+              service: alarm_control_panel.alarm_arm_away
+              service_data:
+                entity_id: alarm_control_panel.alarm
+            type: image

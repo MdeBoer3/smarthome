@@ -1,0 +1,103 @@
+#########################################
+####        Custom panels           ####
+#########################################
+
+          - type: image
+            entity: camera.buienradar_loop
+            camera_image: camera.buienradar_loop
+            style:
+              box-shadow: '0px 0px 25px black'
+              border-radius: 35px
+              left: 30%
+              top: 50%
+            #   width: 50%
+              heigth: 80%
+
+          - fillColor: 'rgba(89, 160, 238, 0.2)'
+            lat: 51.66
+            lineColor: 'rgba(89, 160, 238, 1)'
+            long: 5.62
+            style: |
+              :host {
+                left: 78%;
+                top:  70%;
+                width: 39%;
+                overflow: hidden;
+                height: 30%;
+                background: none !important;
+                box-shadow: none !important;
+              }
+              ha-card {
+                height: 100%;
+                background: none  !important;
+                box-shadow: none !important;
+                border-radius: 1vw;
+                position: relative;
+                font-size: 1vw !important;
+              }
+              .chart-container {
+                  height:100%;
+                  width:100%
+              }
+              #container {
+                  height:100%;
+                  width:100%;
+                  padding: 0 !important;
+                  margin: 0 !important;
+              }
+            type: 'custom:buien-rain-forecast'
+            update_interval: 10
+
+          - type: custom:weather-card
+            entity: weather.uden
+            current: false
+            details: true
+            forecast: true
+            hourly_forecast: false
+            number_of_forecasts: 5
+            style:
+            #   box-shadow: '0px 0px 25px black'
+            #   border-radius: 35px
+              left: 78%
+              top: 35%
+              width: 39%
+              --ha-card-background: "rgba(0, 0, 0, 0)" 
+              --ha-card-box-shadow: "rgba(0, 0, 0, 0)" 
+
+
+#########################################
+####            Side Bar            #####
+#########################################
+
+          - !include sidebar/sb_achtergrond.yaml
+          - !include sidebar/sb_achtergrond2.yaml
+          - !include sidebar/sb_icon_huis.yaml
+          - !include sidebar/sb_icon_instellingen.yaml
+          - !include sidebar/sb_pending_update.yaml
+          - !include sidebar/sb_adguard.yaml
+          - !include sidebar/sb_icon_electric.yaml
+          - !include sidebar/sb_energy_melding_1.yaml
+          - !include sidebar/sb_energy_melding_2.yaml
+          - !include sidebar/sb_icon_speaker.yaml
+          
+          - !include sidebar/sb_weer_icon.yaml
+          - !include sidebar/sb_weer_plaats.yaml
+          
+          - !include sidebar/sb_wasmachine.yaml
+          - !include sidebar/sb_powerbar.yaml
+          - !include sidebar/sb_powerstate.yaml
+          - !include sidebar/sb_powerstate_2.yaml
+          
+          - !include sidebar/sb_tijd.yaml
+          - !include sidebar/sb_tijd_datum.yaml
+          - !include sidebar/sb_dayoftheweek.yaml
+          
+          - !include sidebar/sb_afval_rest.yaml
+          - !include sidebar/sb_afval_gft.yaml
+          - !include sidebar/sb_afval_plastic.yaml
+          - !include sidebar/sb_afval_papier.yaml
+          
+          - !include sidebar/sb_mason.yaml
+          - !include sidebar/sb_richelle.yaml
+          - !include sidebar/sb_visitor.yaml
+          - !include sidebar/sb_alarm_state.yaml

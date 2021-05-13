@@ -1,0 +1,58 @@
+#########################################
+####        Custom panels           ####
+#########################################
+
+          - type: 'custom:card-templater'
+            card:
+              type: history-graph
+            #   title: 'Energy'
+              entities:
+                - entity: sensor.power_consumption_filter
+                  name: Stroom
+                - entity: sensor.hourly_gas_consumption
+                  name: Gas
+            style:
+              left: 0%
+              top:  17%
+              width: 100%
+              transform: scale(1,1.2)
+              --ha-card-background: "rgba(0, 0, 0, 0)" 
+              --ha-card-box-shadow: "rgba(0, 0, 0, 0)" 
+
+
+#########################################
+####            Side Bar            #####
+#########################################
+            
+          - !include sidebar/sb_achtergrond.yaml
+          - !include sidebar/sb_achtergrond2.yaml
+          - !include sidebar/sb_icon_huis.yaml
+          - !include sidebar/sb_icon_instellingen.yaml
+          - !include sidebar/sb_pending_update.yaml
+          - !include sidebar/sb_adguard.yaml
+          - !include sidebar/sb_icon_electric.yaml
+          - !include sidebar/sb_energy_melding_1.yaml
+          - !include sidebar/sb_energy_melding_2.yaml
+          - !include sidebar/sb_icon_speaker.yaml
+          
+          - !include sidebar/sb_weer_icon.yaml
+          - !include sidebar/sb_weer_plaats.yaml
+          
+          - !include sidebar/sb_wasmachine.yaml
+          - !include sidebar/sb_powerbar.yaml
+          - !include sidebar/sb_powerstate.yaml
+          - !include sidebar/sb_powerstate_2.yaml
+          
+          - !include sidebar/sb_tijd.yaml
+          - !include sidebar/sb_tijd_datum.yaml
+          - !include sidebar/sb_dayoftheweek.yaml
+          
+          - !include sidebar/sb_afval_rest.yaml
+          - !include sidebar/sb_afval_gft.yaml
+          - !include sidebar/sb_afval_plastic.yaml
+          - !include sidebar/sb_afval_papier.yaml
+          
+          - !include sidebar/sb_mason.yaml
+          - !include sidebar/sb_richelle.yaml
+          - !include sidebar/sb_visitor.yaml
+          - !include sidebar/sb_alarm_state.yaml

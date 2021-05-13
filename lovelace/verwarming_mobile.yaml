@@ -1,0 +1,925 @@
+#########################################
+####        Custom panels           ####
+#########################################
+
+# # weersafhankelijkheid
+#           - type: conditional
+#             conditions:
+#               - entity: input_boolean.weersafhankelijkheid
+#                 state: 'on'
+#             elements:
+#               - type: conditional
+#                 conditions:
+#                   - entity: climate.woonkamer_2
+#                     state_not: 'off'
+#                 elements:
+#                   - type: image
+#                     entity: sensor.weersverwachting
+#                     image: /local/images/transparent.gif
+#                     state_image:
+#                       "vries": /local/images/snow.png
+#                       "koud": /local/images/snow.png
+#                       "warm": /local/images/sun.png
+#                       "hittegolf": /local/images/sun.png
+#                     style:
+#                       left: 33.5%
+#                       top: 27.5%
+#                       width: 5%
+#                       opacity: 0.7
+#                     tap_action: none
+#                   - type: image
+#                     entity: sensor.weersverwachting
+#                     image: /local/images/transparent.gif
+#                     state_image:
+#                       "vries": /local/images/snow.png
+#                       "koud": /local/images/transparent.gif
+#                       "warm": /local/images/transparent.gif
+#                       "hittegolf": /local/images/sun.png
+#                     style:
+#                       left: 38.5%
+#                       top: 27.5%
+#                       width: 5%
+#                       opacity: 0.7
+#                     tap_action: none
+#                 tap_action: none
+#               - type: conditional
+#                 conditions:
+#                   - entity: climate.slaapkamer_2
+#                     state_not: 'off'
+#                 elements:
+#                   - type: image
+#                     entity: sensor.weersverwachting
+#                     image: /local/images/transparent.gif
+#                     state_image:
+#                       "vries": /local/images/snow.png
+#                       "koud": /local/images/snow.png
+#                       "warm": /local/images/sun.png
+#                       "hittegolf": /local/images/sun.png
+#                     style:
+#                       left: 83.5%
+#                       top: 27.5%
+#                       width: 5%
+#                       opacity: 0.7
+#                     tap_action: none
+#                   - type: image
+#                     entity: sensor.weersverwachting
+#                     image: /local/images/transparent.gif
+#                     state_image:
+#                       "vries": /local/images/snow.png
+#                       "koud": /local/images/transparent.gif
+#                       "warm": /local/images/transparent.gif
+#                       "hittegolf": /local/images/sun.png
+#                     style:
+#                       left: 88.5%
+#                       top: 27.5%
+#                       width: 5%
+#                       opacity: 0.7
+#                     tap_action: none
+#                 tap_action: none
+#               - type: conditional
+#                 conditions:
+#                   - entity: climate.logeerkamer
+#                     state_not: 'off'
+#                 elements:
+#                   - type: image
+#                     entity: sensor.weersverwachting
+#                     image: /local/images/transparent.gif
+#                     state_image:
+#                       "vries": /local/images/snow.png
+#                       "koud": /local/images/snow.png
+#                       "warm": /local/images/sun.png
+#                       "hittegolf": /local/images/sun.png
+#                     style:
+#                       left: 33.5%
+#                       top: 71%
+#                       width: 5%
+#                       opacity: 0.7
+#                     tap_action: none
+#                   - type: image
+#                     entity: sensor.weersverwachting
+#                     image: /local/images/transparent.gif
+#                     state_image:
+#                       "vries": /local/images/snow.png
+#                       "koud": /local/images/transparent.gif
+#                       "warm": /local/images/transparent.gif
+#                       "hittegolf": /local/images/sun.png
+#                     style:
+#                       left: 38.5%
+#                       top: 71%
+#                       width: 5%
+#                       opacity: 0.7
+#                     tap_action: none
+#                 tap_action: none
+#               - type: conditional
+#                 conditions:
+#                   - entity: climate.badkamer
+#                     state_not: 'off'
+#                 elements:
+#                   - type: image
+#                     entity: sensor.weersverwachting
+#                     image: /local/images/transparent.gif
+#                     state_image:
+#                       "vries": /local/images/snow.png
+#                       "koud": /local/images/snow.png
+#                       "warm": /local/images/sun.png
+#                       "hittegolf": /local/images/sun.png
+#                     style:
+#                       left: 83.5%
+#                       top: 71%
+#                       width: 5%
+#                       opacity: 0.7
+#                     tap_action: none
+#                   - type: image
+#                     entity: sensor.weersverwachting
+#                     image: /local/images/transparent.gif
+#                     state_image:
+#                       "vries": /local/images/snow.png
+#                       "koud": /local/images/transparent.gif
+#                       "warm": /local/images/transparent.gif
+#                       "hittegolf": /local/images/sun.png
+#                     style:
+#                       left: 88.5%
+#                       top: 71%
+#                       width: 5%
+#                       opacity: 0.7
+#                     tap_action: none
+#                 tap_action: none
+#             tap_action: none
+
+# eco
+          - type: conditional
+            conditions:
+              - entity: input_boolean.eco
+                state: 'on'
+            elements:
+              - type: conditional
+                conditions:
+                  - entity: climate.woonkamer_2
+                    state_not: 'off'
+                elements:
+                  - type: image
+                    image: /local/images/eco.png
+                    style:
+                      left: 15%
+                      top: 27.5%
+                      width: 5%
+                    tap_action: none
+                tap_action: none
+              - type: conditional
+                conditions:
+                  - entity: climate.slaapkamer_2
+                    state_not: 'off'
+                elements:
+                  - type: image
+                    image: /local/images/eco.png
+                    style:
+                      left: 65%
+                      top: 27.5%
+                      width: 5%
+                    tap_action: none
+                tap_action: none
+              - type: conditional
+                conditions:
+                  - entity: climate.logeerkamer
+                    state_not: 'off'
+                elements:
+                  - type: image
+                    image: /local/images/eco.png
+                    style:
+                      left: 15%
+                      top: 71%
+                      width: 5%
+                    tap_action: none
+                tap_action: none
+              - type: conditional
+                conditions:
+                  - entity: climate.badkamer
+                    state_not: 'off'
+                elements:
+                  - type: image
+                    image: /local/images/eco.png
+                    style:
+                      left: 65%
+                      top: 71%
+                      width: 5%
+                    tap_action: none
+                tap_action: none
+            tap_action: none
+
+# haard
+          - type: conditional
+            conditions:
+              - entity: sensor.openhaard
+                state: 'on'
+            elements:
+              - type: image
+                image: /local/images/woodfire.gif
+                style:
+                  left: 33.5%
+                  top: 27.5%
+                  width: 7%
+                tap_action: none
+            tap_action: none
+
+# Thermostaten
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 25%
+              text-align: center
+              color: lightgrey
+              top: 16.5%
+              width: 60%
+            text: 'Woonkamer'
+            type: custom:text-element
+          - type: custom:hui-thermostat-card
+            entity: climate.woonkamer_2
+            name: " "
+            style: |
+              :host {
+                left: 25%;
+                top:  29%;
+                width: 58%;
+                overflow: hidden;
+                background: none  !important;
+                box-shadow: none !important;
+              }
+              ha-card {
+                background: none  !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 75%
+              text-align: center
+              color: lightgrey
+              top: 16.5%
+              width: 60%
+            text: 'Slaapkamer'
+            type: custom:text-element
+          - type: custom:hui-thermostat-card
+            entity: climate.slaapkamer_2
+            name: " "
+            style: |
+              :host {
+                left: 75%;
+                top:  29%;
+                width: 58%;
+                overflow: hidden;
+                background: none  !important;
+                box-shadow: none !important;
+              }
+              ha-card {
+                background: none  !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 75%
+              text-align: center
+              color: lightgrey
+              top: 58%
+              width: 60%
+            text: 'Logeerkamer'
+            type: custom:text-element
+          - type: custom:hui-thermostat-card
+            entity: climate.logeerkamer
+            name: " "
+            style: |
+              :host {
+                left: 75%;
+                top:  67%;
+                width: 58%;
+                overflow: hidden;
+                background: none  !important;
+                box-shadow: none !important;
+              }
+              ha-card {
+                background: none  !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+          - style:
+              font-size: 4.5vw
+              font-weight: 350
+              left: 25%
+              text-align: center
+              color: lightgrey
+              top: 58%
+              width: 60%
+            text: 'Badkamer'
+            type: custom:text-element
+          - type: custom:hui-thermostat-card
+            entity: climate.badkamer
+            name: " "
+            style: |
+              :host {
+                left: 25%;
+                top:  67%;
+                width: 58%;
+                overflow: hidden;
+                background: none  !important;
+                box-shadow: none !important;
+              }
+              ha-card {
+                background: none  !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+
+
+# # automatic program
+#           - style:
+#               font-size: 4.2vw
+#               font-weight: 300
+#               left: 4%
+#               text-align: center
+#               top: 48%
+#               transform: none
+#               color: lightgrey
+#             tap_action:
+#               action: none
+#             text: 'Volg programma'
+#             type: custom:text-element
+#           - type: image
+#             entity: input_boolean.thermostaat_woonkamer_handmatig
+#             state_image:
+#               'off': /local/images/switch_on.png
+#               'on': /local/images/switch_off.png
+#             style:
+#               box-shadow: '0px 0px 10px black'
+#               border-radius: 35px
+#               left: 42%     #+15
+#               top: 49.5%    #+1.5
+#               width: 8%
+#             tap_action:
+#               action: call-service
+#               service: homeassistant.toggle
+#               service_data:
+#                 entity_id: input_boolean.thermostaat_woonkamer_handmatig
+
+#           - style:
+#               font-size: 4.2vw
+#               font-weight: 300
+#               left: 54%
+#               text-align: center
+#               top: 48%
+#               transform: none
+#               color: lightgrey
+#             tap_action:
+#               action: none
+#             text: 'Volg programma'
+#             type: custom:text-element
+#           - type: image
+#             entity: input_boolean.thermostaat_slaapkamer_handmatig
+#             state_image:
+#               'off': /local/images/switch_on.png
+#               'on': /local/images/switch_off.png
+#             style:
+#               box-shadow: '0px 0px 10px black'
+#               border-radius: 35px
+#               left: 92%     #+15
+#               top: 49.5%    #+1.5
+#               width: 8%
+#             tap_action:
+#               action: call-service
+#               service: homeassistant.toggle
+#               service_data:
+#                 entity_id: input_boolean.thermostaat_slaapkamer_handmatig
+
+
+
+# Woonkamer
+          - type: image
+            entity: input_boolean.thermostaat_woonkamer_auto
+            state_image:
+              'on': /local/images/auto_on.png
+              'off': /local/images/auto_off_2.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 10%
+              top: 49%
+              width: 14.5%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_woonkamer_auto
+          - type: image
+            entity: input_boolean.thermostaat_woonkamer_handmatig
+            state_image:
+              'on': /local/images/manual_on.png
+              'off': /local/images/manual_off_2.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 25%
+              top: 49%
+              width: 14.5%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_woonkamer_handmatig
+          - type: image
+            entity: input_boolean.thermostaat_woonkamer_uit
+            state_image:
+              'on': /local/images/off_on_2.png
+              'off': /local/images/off_off_3.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 40%
+              top: 49%
+              width: 14.5%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_woonkamer_uit
+# Slaapkamer
+          - type: image
+            entity: input_boolean.thermostaat_slaapkamer_auto
+            state_image:
+              'on': /local/images/auto_on.png
+              'off': /local/images/auto_off_2.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 60%
+              top: 49%
+              width: 14.5%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_slaapkamer_auto
+          - type: image
+            entity: input_boolean.thermostaat_slaapkamer_handmatig
+            state_image:
+              'on': /local/images/manual_on.png
+              'off': /local/images/manual_off_2.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 75%
+              top: 49%
+              width: 14.5%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_slaapkamer_handmatig
+          - type: image
+            entity: input_boolean.thermostaat_slaapkamer_uit
+            state_image:
+              'on': /local/images/off_on_2.png
+              'off': /local/images/off_off_3.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 90%
+              top: 49%
+              width: 14.5%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_slaapkamer_uit
+# Badkamer
+          - type: image
+            entity: input_boolean.thermostaat_badkamer_auto
+            state_image:
+              'on': /local/images/auto_on.png
+              'off': /local/images/auto_off_2.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 10%
+              top: 84%
+              width: 14.5%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_badkamer_auto
+          - type: image
+            entity: input_boolean.thermostaat_badkamer_handmatig
+            state_image:
+              'on': /local/images/manual_on.png
+              'off': /local/images/manual_off_2.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 25%
+              top: 84%
+              width: 14.5%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_badkamer_handmatig
+          - type: image
+            entity: input_boolean.thermostaat_badkamer_uit
+            state_image:
+              'on': /local/images/off_on_2.png
+              'off': /local/images/off_off_3.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 40%
+              top: 84%
+              width: 14.5%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_badkamer_uit
+# Logeerkamer
+          - type: image
+            entity: input_boolean.thermostaat_logeerkamer_handmatig
+            state_image:
+              'on': /local/images/manual_on.png
+              'off': /local/images/manual_off_2.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 67.5%
+              top: 84%
+              width: 14.5%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_logeerkamer_handmatig
+          - type: image
+            entity: input_boolean.thermostaat_logeerkamer_uit
+            state_image:
+              'on': /local/images/off_on_2.png
+              'off': /local/images/off_off_3.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 82.5%
+              top: 84%
+              width: 14.5%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_logeerkamer_uit
+
+
+
+#########################################
+####            Side Bar            #####
+#########################################
+            
+            
+        #   - !include sidebar/sb_achtergrond.yaml
+          - image: /local/images/bar3.png
+            style:
+              box-shadow: '0px 0px 20px dimgray'
+              border-radius: 30px
+              height: 10%
+              left: 50%
+              top: 93%
+              width: 80%
+            tap_action:
+              action: none
+            type: image
+
+          - action: none
+            image: /local/images/selection3.png
+            style:
+              border-radius: 5vw
+              left: 12%
+              top: 89.2%
+              width: 20%
+              transform: scale(1,2)
+            type: image
+
+        #   - !include sidebar/sb_achtergrond2.yaml
+          - image: /local/images/bar3.png
+            style:
+              box-shadow: '0px 0px 20px dimgray'
+              border-radius: 30px
+              left: 50%
+              top: 4.5%
+              width: 160%
+              opacity: 0.6
+            tap_action:
+              action: none
+            type: image
+
+        #   - !include sidebar/sb_icon_huis.yaml
+          - image: /local/images/huis1.png
+            style:
+              left: 22%
+              top: 92.5%
+              width: 8%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/0
+            type: image
+
+        #   - !include sidebar/sb_icon_instellingen.yaml
+          - image: /local/images/instellingen.png
+            style:
+              left: 78%
+              top: 92.5%
+              width: 10%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/12
+            type: image
+
+        #   - !include sidebar/sb_pending_update.yaml
+          - type: conditional
+            conditions:
+              - entity: binary_sensor.updater
+                state: "on"
+            elements:
+              - image: /local/images/one_2.png
+                style:
+                  left: 82%
+                  top: 91%
+                  width: 6%
+                type: image
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/12
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/12
+
+        #   - !include sidebar/sb_adguard.yaml
+          - type: conditional
+            conditions:
+              - entity: switch.adguard_protection
+                state: "off"
+            elements:
+              - image: /local/images/one_2.png
+                style:
+                  left: 82%
+                  top: 91%
+                  width: 6%
+                type: image
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/12
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/12
+
+        #   - !include sidebar/sb_icon_electric.yaml
+          - image: /local/images/electric.png
+            style:
+              left: 59%
+              top: 92.7%
+              width: 11%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/11
+            type: image
+
+        #   - !include sidebar/sb_energy_melding_1.yaml
+          - type: conditional
+            conditions:
+              - entity: sensor.standby_high
+                state: "on"
+            elements:
+              - image: /local/images/one_2.png
+                style:
+                  left: 62%
+                  top: 91%
+                  width: 6%
+                type: image
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/11
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/11
+
+        #   - !include sidebar/sb_energy_melding_2.yaml
+          - type: conditional
+            conditions:
+              - entity: input_boolean.energy_hoog_verbruik
+                state: "on"
+            elements:
+              - image: /local/images/one_2.png
+                style:
+                  left: 62%
+                  top: 91%
+                  width: 6%
+                type: image
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace/11
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/11
+
+        #   - !include sidebar/sb_icon_speaker.yaml
+          - image: /local/images/speaker.png
+            style:
+              left: 41%
+              top: 92.5%
+              width: 10%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/10
+            type: image
+
+          - !include sidebar/sb_weer_icon.yaml
+          - !include sidebar/sb_weer_plaats.yaml
+          
+          - !include sidebar/sb_wasmachine.yaml
+
+        #   - !include sidebar/sb_powerbar.yaml
+          - entity: input_number.energy_dag_0
+            max: 6
+            min: 0
+            direction: up
+            positions:
+              icon: 'off'
+              indicator: 'off'
+              name: 'off'
+              value: 'off'
+            severity:
+              - color: Green
+                from: 0
+                to: 2.5
+              - color: YellowGreen
+                from: 2.5
+                to: 2.9
+              - color: Gold
+                from: 3
+                to: 3.3
+              - color: Orange
+                from: 3.3
+                to: 3.9
+              - color: OrangeRed
+                from: 3.9
+                to: 4.5
+              - color: Firebrick
+                from: 4.5
+                to: 100
+            style: |
+              :host {
+                left: 26.5%;
+                top:  4%;
+                width: 14%;
+                height: 12.5%;
+                background: none !important;
+                box-shadow: none !important;
+                border-radius: 0.1vw;
+              }
+              ha-card {
+                height: 100%;
+                background: none !important;
+                box-shadow: none !important;
+                border-radius: 0.1vw;
+                font-size: 1.5vw !important;
+              }
+            tap_action:
+              action: none
+            type: 'custom:bar-card'
+
+        #   - !include sidebar/sb_powerstate.yaml
+          - type: conditional          
+            conditions:
+              - entity: input_boolean.energy_hoog_verbruik
+                state: 'off'
+            elements:
+              - icon: mdi:emoticon-excited-outline
+                style:
+                  left: 24.3%
+                  top: 4.7%
+                  width: 1.5%
+                  transform: scale(0.6,0.6)
+                type: icon
+                tap_action:
+                  action: none
+            tap_action:
+              action: none
+
+        #   - !include sidebar/sb_powerstate_2.yaml
+          - type: conditional          
+            conditions:
+              - entity: input_boolean.energy_hoog_verbruik
+                state: 'on'
+            elements:
+              - icon: mdi:emoticon-frown-outline
+                style:
+                  left: 24.3%
+                  top: 4.7%
+                  width: 1.5%
+                  transform: scale(0.6,0.6)
+                type: icon
+                tap_action:
+                  action: none
+            tap_action:
+              action: none
+
+        #   - !include sidebar/sb_tijd.yaml
+          - entity: sensor.time
+            type: state-label
+            style:
+                font-size: 1.8vmax
+                font-family: 'Poppins,sans-serif'
+                font-weight: 500
+                left: 6%
+                text-align: center
+                top: 1.5%
+                transform: scale(2,2)
+            tap_action:
+              action: none
+
+        #   - !include sidebar/sb_tijd_datum.yaml
+          - entity: sensor.date_long
+            style:
+              font-size: 2.8vw
+              font-weight: 150
+              left: 79%
+              top: 3.5%
+              color: lightgrey
+              transform: scale(1.15,1)
+            type: state-label
+            tap_action:
+              action: none
+
+        #   - !include sidebar/sb_dayoftheweek.yaml
+          - entity: sensor.dayoftheweek
+            style:
+              font-size: 4vw
+              font-weight: 350
+              left: 88.5%
+              text-align: right
+              top: 3.5%
+              color: lightgrey
+            type: state-label
+            tap_action:
+              action: none
+
+          - !include sidebar/sb_afval_rest.yaml
+          - !include sidebar/sb_afval_gft.yaml
+          - !include sidebar/sb_afval_plastic.yaml
+          - !include sidebar/sb_afval_papier.yaml
+          
+          - !include sidebar/sb_mason.yaml
+          - !include sidebar/sb_richelle.yaml
+
+        #   - !include sidebar/sb_visitor.yaml
+          - type: conditional
+            conditions:
+              - entity: input_boolean.gast
+                state: "on"
+            elements:
+              - image: /local/images/visitor2.png
+                style:
+                  left: 36%
+                  top: 10.5%
+                  width: 13%
+                  opacity: 0.8
+                type: image
+            tap_action: none
+
+        #   - !include sidebar/sb_alarm_state.yaml
+          - entity: alarm_control_panel.alarm
+            state_image:
+              'disarmed': /local/images/alarm-disarmed4.png
+              'armed_away': /local/images/alarm-armed4.png
+              'arming': /local/images/alarm-armed4.png
+              'pending': /local/images/alarm.gif
+              'triggered': /local/images/alarm.gif
+            style:
+              left: 36%
+              top: 5.5%
+              width: 11%
+            #   opacity: 1
+            tap_action:
+              action: call-service
+              service: alarm_control_panel.alarm_disarm
+              service_data:
+                entity_id: alarm_control_panel.alarm
+            double_tap_action:
+              action: call-service
+              service: alarm_control_panel.alarm_arm_away
+              service_data:
+                entity_id: alarm_control_panel.alarm
+            type: image
+

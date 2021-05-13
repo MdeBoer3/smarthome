@@ -1,0 +1,618 @@
+#########################################
+####            Top Bar             #####
+#########################################
+
+          - !include sidebar/sb_achtergrond2.yaml
+          - !include sidebar/sb_weer_icon.yaml
+          - !include sidebar/sb_weer_plaats.yaml
+          
+          - !include sidebar/sb_wasmachine.yaml
+          - !include sidebar/sb_powerbar.yaml
+          - !include sidebar/sb_powerstate.yaml
+          - !include sidebar/sb_powerstate_2.yaml
+          
+          - !include sidebar/sb_tijd.yaml
+          - !include sidebar/sb_tijd_datum.yaml
+          - !include sidebar/sb_dayoftheweek.yaml
+          
+          - !include sidebar/sb_afval_rest.yaml
+          - !include sidebar/sb_afval_gft.yaml
+          - !include sidebar/sb_afval_plastic.yaml
+          - !include sidebar/sb_afval_papier.yaml
+          
+          - !include sidebar/sb_mason.yaml
+          - !include sidebar/sb_richelle.yaml
+          - !include sidebar/sb_visitor.yaml
+          - !include sidebar/sb_alarm_state.yaml
+
+
+#########################################
+####        Custom panels            ####
+#########################################
+
+# eco
+          - type: conditional
+            conditions:
+              - entity: input_boolean.eco
+                state: 'on'
+            elements:
+              - type: conditional
+                conditions:
+                  - entity: climate.woonkamer_2
+                    state_not: 'off'
+                elements:
+                  - type: image
+                    image: /local/images/eco.png
+                    style:
+                      left: 8.5%
+                      top: 35%
+                      width: 2.5%
+                    tap_action: none
+                tap_action: none
+              - type: conditional
+                conditions:
+                  - entity: climate.slaapkamer_2
+                    state_not: 'off'
+                elements:
+                  - type: image
+                    image: /local/images/eco.png
+                    style:
+                      left: 33.5%
+                      top: 35%
+                      width: 2.5%
+                    tap_action: none
+                tap_action: none
+              - type: conditional
+                conditions:
+                  - entity: climate.badkamer
+                    state_not: 'off'
+                elements:
+                  - type: image
+                    image: /local/images/eco.png
+                    style:
+                      left: 58.5%
+                      top: 35%
+                      width: 2.5%
+                    tap_action: none
+                tap_action: none
+              - type: conditional
+                conditions:
+                  - entity: climate.logeerkamer
+                    state_not: 'off'
+                elements:
+                  - type: image
+                    image: /local/images/eco.png
+                    style:
+                      left: 83.5%
+                      top: 35%
+                      width: 2.5%
+                    tap_action: none
+                tap_action: none
+            tap_action: none
+# haard
+          - type: conditional
+            conditions:
+              - entity: sensor.openhaard
+                state: 'on'
+            elements:
+              - type: image
+                image: /local/images/woodfire.gif
+                style:
+                  left: 17.5%
+                  top: 36.5%
+                  width: 6.5%
+                  opacity: 0.3
+                tap_action: none
+              - type: image
+                image: /local/images/woodfire.gif
+                style:
+                  left: 17.5%
+                  top: 37.5%
+                  width: 5%
+                tap_action: none
+            tap_action: none
+
+# Thermostaten
+          - type: conditional
+            conditions:
+              - entity: input_boolean.thermostaat_woonkamer_uit
+                state: 'off'
+            elements:
+              - style:
+                  font-size: 1.8vw
+                  font-weight: 450
+                  left: 12.5%
+                  text-align: center
+                  color: lightgrey
+                  top: 22%
+                  width: 20%
+                text: 'Woonkamer'
+                type: custom:text-element
+              - type: custom:hui-thermostat-card
+                entity: climate.woonkamer_2
+                name: " "
+                style:
+                  --ha-card-background: "rgba(0, 0, 0, 0)" 
+                  --ha-card-box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+                  left: 12.5%
+                  top: 35%
+                  width: 27%
+                #   opacity: 0.5
+          - type: conditional
+            conditions:
+              - entity: input_boolean.thermostaat_woonkamer_uit
+                state: 'on'
+            elements:
+              - style:
+                  font-size: 1.8vw
+                  font-weight: 450
+                  left: 12.5%
+                  text-align: center
+                  color: lightgrey
+                  top: 22%
+                  width: 20%
+                  opacity: 0.5
+                text: 'Woonkamer'
+                type: custom:text-element
+              - type: custom:hui-thermostat-card
+                entity: climate.woonkamer_2
+                name: " "
+                style:
+                  --ha-card-background: "rgba(0, 0, 0, 0)" 
+                  --ha-card-box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+                  left: 12.5%
+                  top: 35%
+                  width: 27%
+                  opacity: 0.5
+
+          - type: conditional
+            conditions:
+              - entity: input_boolean.thermostaat_slaapkamer_uit
+                state: 'off'
+            elements:
+              - style:
+                  font-size: 1.8vw
+                  font-weight: 350
+                  left: 37.5%
+                  text-align: center
+                  color: lightgrey
+                  top: 22%
+                  width: 20%
+                text: 'Slaapkamer'
+                type: custom:text-element
+              - type: custom:hui-thermostat-card
+                entity: climate.slaapkamer_2
+                name: " "
+                style:
+                  --ha-card-background: "rgba(0, 0, 0, 0)" 
+                  --ha-card-box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+                  left: 37.5%
+                  top: 35% #34.5%
+                  width: 27% #21.5%
+          - type: conditional
+            conditions:
+              - entity: input_boolean.thermostaat_slaapkamer_uit
+                state: 'on'
+            elements:
+              - style:
+                  font-size: 1.8vw
+                  font-weight: 350
+                  left: 37.5%
+                  text-align: center
+                  color: lightgrey
+                  top: 22%
+                  width: 20%
+                  opacity: 0.5
+                text: 'Slaapkamer'
+                type: custom:text-element
+              - type: custom:hui-thermostat-card
+                entity: climate.slaapkamer_2
+                name: " "
+                style:
+                  --ha-card-background: "rgba(0, 0, 0, 0)" 
+                  --ha-card-box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+                  left: 37.5%
+                  top: 35% #34.5%
+                  width: 27% #21.5%
+                  opacity: 0.5
+
+          - type: conditional
+            conditions:
+              - entity: input_boolean.thermostaat_badkamer_uit
+                state: 'off'
+            elements:
+              - style:
+                  font-size: 1.8vw
+                  font-weight: 350
+                  left: 62.5%
+                  text-align: center
+                  color: lightgrey
+                  top: 22%
+                  width: 20%
+                text: 'Badkamer'
+                type: custom:text-element
+              - type: custom:hui-thermostat-card
+                entity: climate.badkamer
+                name: " "
+                style:
+                  --ha-card-background: "rgba(0, 0, 0, 0)" 
+                  --ha-card-box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+                  left: 62.5%
+                  top: 32% #31.5%
+                  width: 27%
+          - type: conditional
+            conditions:
+              - entity: input_boolean.thermostaat_badkamer_uit
+                state: 'on'
+            elements:
+              - style:
+                  font-size: 1.8vw
+                  font-weight: 350
+                  left: 62.5%
+                  text-align: center
+                  color: lightgrey
+                  top: 22%
+                  width: 20%
+                  opacity: 0.5
+                text: 'Badkamer'
+                type: custom:text-element
+              - type: custom:hui-thermostat-card
+                entity: climate.badkamer
+                name: " "
+                style:
+                  --ha-card-background: "rgba(0, 0, 0, 0)" 
+                  --ha-card-box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+                  left: 62.5%
+                  top: 32% #31.5%
+                  width: 27%
+                  opacity: 0.5
+
+          - type: conditional
+            conditions:
+              - entity: input_boolean.thermostaat_logeerkamer_uit
+                state: 'off'
+            elements:
+              - style:
+                  font-size: 1.8vw
+                  font-weight: 350
+                  left: 87.5%
+                  text-align: center
+                  color: lightgrey
+                  top: 22%
+                  width: 20%
+                text: 'Logeerkamer'
+                type: custom:text-element
+              - type: custom:hui-thermostat-card
+                entity: climate.logeerkamer
+                name: " "
+                style:
+                  --ha-card-background: "rgba(0, 0, 0, 0)" 
+                  --ha-card-box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+                  left: 87.5%
+                  top: 32% #31.5%
+                  width: 27%
+          - type: conditional
+            conditions:
+              - entity: input_boolean.thermostaat_logeerkamer_uit
+                state: 'on'
+            elements:
+              - style:
+                  font-size: 1.8vw
+                  font-weight: 350
+                  left: 87.5%
+                  text-align: center
+                  color: lightgrey
+                  top: 22%
+                  width: 20%
+                  opacity: 0.5
+                text: 'Logeerkamer'
+                type: custom:text-element
+              - type: custom:hui-thermostat-card
+                entity: climate.logeerkamer
+                name: " "
+                style:
+                  --ha-card-background: "rgba(0, 0, 0, 0)" 
+                  --ha-card-box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+                  left: 87.5%
+                  top: 32% #31.5%
+                  width: 27%
+                  opacity: 0.5
+
+
+###    Buienradar
+          - fillColor: 'rgba(89, 160, 238, 0.2)'
+            lat: 51.66
+            lineColor: 'rgba(89, 160, 238, 1)'
+            long: 5.62
+            style: |
+              :host {
+                left: 60%;
+                top:  70%;
+                width: 33%;
+                overflow: hidden;
+                height: 24%;
+                background: none !important;
+                box-shadow: none !important;
+              }
+              ha-card {
+                height: 100%;
+                background: none  !important;
+                box-shadow: none !important;
+                border-radius: 1vw;
+                position: relative;
+                font-size: 1vw !important;
+              }
+              .chart-container {
+                  height:100%;
+                  width:100%
+              }
+              #container {
+                  height:100%;
+                  width:100%;
+                  padding: 0 !important;
+                  margin: 0 !important;
+              }
+            type: 'custom:buien-rain-forecast'
+            update_interval: 10
+
+
+####    Weerbericht
+          - current: false
+            details: false
+            forecast: true
+            entity: weather.uden
+            # name: Uden
+            style: |
+              :host {
+                left: 22%;
+                top:  71%;
+                width: 45%;
+                overflow: hidden;
+                height: 28%;
+              }
+              ha-card {
+                background: none  !important;
+                box-shadow: none !important;
+                font-size: 1.4vw !important;
+                transform: scale(1,1);
+              }
+            type: 'custom:weather-card'
+
+# Buienradar
+          - type: image
+            entity: camera.buienradar_loop
+            camera_image: camera.buienradar_loop
+            style:
+              box-shadow: '0px 0px 25px black'
+              border-radius: 35px
+              left: 89%
+              top: 70%
+              width: 20%
+            #   heigth: 30%
+          - type: image
+            image: /local/images/transparent.gif
+            style:
+              left: 50%
+              top: 71%
+              width: 98%
+              height: 27%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/7/
+
+# Woonkamer
+          - type: image
+            entity: input_boolean.thermostaat_woonkamer_auto
+            state_image:
+              'on': /local/images/auto_on.png
+              'off': /local/images/auto_off_2.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 5%
+              top: 52%
+              width: 7.2%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_woonkamer_auto
+          - type: image
+            entity: input_boolean.thermostaat_woonkamer_handmatig
+            state_image:
+              'on': /local/images/manual_on.png
+              'off': /local/images/manual_off_2.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 12.5%
+              top: 52%
+              width: 7.2%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_woonkamer_handmatig
+          - type: image
+            entity: input_boolean.thermostaat_woonkamer_uit
+            state_image:
+              'on': /local/images/off_on_2.png
+              'off': /local/images/off_off_3.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 20%
+              top: 52%
+              width: 7.2%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_woonkamer_uit
+# Slaapkamer
+          - type: image
+            entity: input_boolean.thermostaat_slaapkamer_auto
+            state_image:
+              'on': /local/images/auto_on.png
+              'off': /local/images/auto_off_2.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 30%
+              top: 52%
+              width: 7.2%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_slaapkamer_auto
+          - type: image
+            entity: input_boolean.thermostaat_slaapkamer_handmatig
+            state_image:
+              'on': /local/images/manual_on.png
+              'off': /local/images/manual_off_2.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 37.5%
+              top: 52%
+              width: 7.2%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_slaapkamer_handmatig
+          - type: image
+            entity: input_boolean.thermostaat_slaapkamer_uit
+            state_image:
+              'on': /local/images/off_on_2.png
+              'off': /local/images/off_off_3.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 45%
+              top: 52%
+              width: 7.2%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_slaapkamer_uit
+# Badkamer
+          - type: image
+            entity: input_boolean.thermostaat_badkamer_auto
+            state_image:
+              'on': /local/images/auto_on.png
+              'off': /local/images/auto_off_2.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 55%
+              top: 52%
+              width: 7.2%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_badkamer_auto
+          - type: image
+            entity: input_boolean.thermostaat_badkamer_handmatig
+            state_image:
+              'on': /local/images/manual_on.png
+              'off': /local/images/manual_off_2.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 62.5%
+              top: 52%
+              width: 7.2%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_badkamer_handmatig
+          - type: image
+            entity: input_boolean.thermostaat_badkamer_uit
+            state_image:
+              'on': /local/images/off_on_2.png
+              'off': /local/images/off_off_3.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 70%
+              top: 52%
+              width: 7.2%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_badkamer_uit
+# Logeerkamer
+          - type: image
+            entity: input_boolean.thermostaat_logeerkamer_handmatig
+            state_image:
+              'on': /local/images/manual_on.png
+              'off': /local/images/manual_off_2.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 83.75%
+              top: 52%
+              width: 7.2%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_logeerkamer_handmatig
+          - type: image
+            entity: input_boolean.thermostaat_logeerkamer_uit
+            state_image:
+              'on': /local/images/off_on_2.png
+              'off': /local/images/off_off_3.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 91.25%
+              top: 52%
+              width: 7.2%
+              filter: brightness(80%)
+            tap_action:
+              action: call-service
+              service: homeassistant.turn_on
+              service_data:
+                entity_id: input_boolean.thermostaat_logeerkamer_uit
+
+
+#########################################
+####         Bottom Bar             #####
+#########################################
+
+          - action: none
+            image: /local/images/selection3.png
+            style:
+              border-radius: 5vw
+              left: 13%
+              top: 84.8%
+              width: 18%
+              transform: scale(1,1)
+            type: image      
+
+          - !include sidebar/sb_achtergrond.yaml
+          - !include sidebar/sb_icon_huis.yaml
+          - !include sidebar/sb_icon_instellingen.yaml
+          - !include sidebar/sb_pending_update.yaml
+          - !include sidebar/sb_adguard.yaml
+          - !include sidebar/sb_icon_electric.yaml
+          - !include sidebar/sb_energy_melding_1.yaml
+          - !include sidebar/sb_energy_melding_2.yaml
+          - !include sidebar/sb_icon_speaker.yaml

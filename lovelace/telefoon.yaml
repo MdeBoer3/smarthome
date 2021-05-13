@@ -1,0 +1,443 @@
+# Shadowline
+          - image: /local/images/shadowline.png
+            style:
+            #   box-shadow: 'inset 0px 0px 30px black'
+            #   box-shadow: '0px 0px 50px black'
+            #   border-radius: '25px'
+            #   background: 'none'
+            #   opacity: 0.5
+            #   height: 1%
+              left: 0%
+              top: 7%
+              width: 100%
+              transform: scale(1,0.4)
+            tap_action:
+              action: none
+            type: image
+          - image: /local/images/shadowline.png
+            style:
+            #   box-shadow: 'inset 0px 0px 30px black'
+            #   box-shadow: '0px 0px 50px black'
+            #   border-radius: '25px'
+            #   background: 'none'
+            #   opacity: 0.5
+            #   height: 1%
+              left: 0%
+              top: 47%
+              width: 100%
+              transform: scale(1,0.4)
+            tap_action:
+              action: none
+            type: image
+          - image: /local/images/shadowline.png
+            style:
+            #   box-shadow: 'inset 0px 0px 30px black'
+            #   box-shadow: '0px 0px 50px black'
+            #   border-radius: '25px'
+            #   background: 'none'
+            #   opacity: 0.5
+            #   height: 1%
+              left: 0%
+              top: 65%
+              width: 100%
+              transform: scale(1,0.4)
+            tap_action:
+              action: none
+            type: image
+
+# Thermostaat
+          - type: custom:hui-thermostat-card
+            entity: climate.woonkamer
+            name: Woonkamer
+            style: |
+              :host {
+                left: 50%;
+                top:  19%;
+                width: 50%;
+                overflow: hidden;
+                background: none  !important;
+                box-shadow: none !important;
+              }
+              ha-card {
+                background: none  !important;
+                box-shadow: none !important;
+                transform: scale(1.1, 1.1);
+                padding: 0 !important;
+          - type: custom:hui-thermostat-card
+            entity: climate.slaapkamer
+            name: Slaapkamer 1
+            style: |
+              :host {
+                left: 15%;
+                top:  38%;
+                width: 40%;
+                overflow: hidden;
+                background: none  !important;
+                box-shadow: none !important;
+              }
+              ha-card {
+                background: none  !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+          - type: custom:hui-thermostat-card
+            entity: climate.slaapkamer
+            name: Slaapkamer 2
+            style: |
+              :host {
+                left: 50%;
+                top:  38%;
+                width: 40%;
+                overflow: hidden;
+                background: none  !important;
+                box-shadow: none !important;
+              }
+              ha-card {
+                background: none  !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+          - type: custom:hui-thermostat-card
+            entity: climate.badkamer
+            name: Badkamer
+            style: |
+              :host {
+                left: 85%;
+                top:  38%;
+                width: 40%;
+                overflow: hidden;
+                background: none  !important;
+                box-shadow: none !important;
+              }
+              ha-card {
+                background: none  !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+
+# Camera
+          - type: image
+            image: /local/images/camera.png
+            style:
+            #   box-shadow: '0px 0px 10px black'
+            #   border-radius: 5px
+              left: 88%
+              top: 4%
+              width: 17%
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/8/
+# Wasmachine
+          - entity: binary_sensor.washing_machine_new
+            state_image:
+              'off': /local/images/transparent.gif
+            #   'off': /local/images/wash_on_test.gif
+              'on': /local/images/wash_on_test.gif
+            style:
+              left: 50%
+              top: 4%
+              width: 14%
+              opacity: 1
+            type: image
+# Alarm
+          - entity: alarm_control_panel.alarm
+            state_image:
+              'disarmed': /local/images/alarm-disarmed4.png
+              'armed_away': /local/images/alarm-armed4.png
+              'arming': /local/images/alarm-armed4.png
+              'pending': /local/images/alarm.gif
+              'triggered': /local/images/alarm.gif
+            style:
+              left: 17%
+              top: 4%
+              width: 18%
+            #   opacity: 1
+            tap_action:
+              action: call-service
+              service: alarm_control_panel.alarm_disarm
+              service_data:
+                entity_id: alarm_control_panel.alarm
+            double_tap_action:
+              action: call-service
+              service: alarm_control_panel.alarm_arm_away
+              service_data:
+                entity_id: alarm_control_panel.alarm
+            type: image
+
+### Afbeeldingen
+# Soundbar
+          - action: none
+            entity: media_player.soundbar
+            image: /local/images/st300.png
+            state_filter:
+                "off": opacity(0.3)
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 18%
+              top: 55%
+              width: 30%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: media_player.soundbar
+
+          - action: none
+            entity: media_player.speaker
+            image: /local/images/st30.png
+            state_filter:
+                "off": opacity(0.3)
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 50%
+              top: 55%
+              width: 33%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: media_player.speaker
+
+          - action: none
+            entity: media_player.kleine_speaker
+            image: /local/images/st10.png
+            state_filter:
+                "off": opacity(0.3)
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 85%
+              top: 55%
+              width: 20%
+            type: image
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: media_player.kleine_speaker
+
+### Volume bars
+# Soundbar
+          - type: custom:mini-media-player
+            entity: media_player.soundbar
+            group: true
+            name: Grote speaker
+            hide:
+              power: true
+              icon: true
+              name: true
+              source: true
+              info: true
+              controls: true
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 15%
+              top: 63%
+              width: 30%
+# Speaker
+          - type: custom:mini-media-player
+            entity: media_player.speaker
+            group: true
+            name: Grote speaker
+            hide:
+              power: true
+              icon: true
+              name: true
+              source: true
+              info: true
+              controls: true
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 50%
+              top: 63%
+              width: 30%
+# Kleine speaker
+          - type: custom:mini-media-player
+            entity: media_player.kleine_speaker
+            group: true
+            name: Grote speaker
+            hide:
+              power: true
+              icon: true
+              name: true
+              source: true
+              info: true
+              controls: true
+            style:
+              box-shadow: '0 0px 0px 0 rgba(0, 0, 0, 0)'
+              left: 85%
+              top: 63%
+              width: 30%
+
+
+# Instellingen
+          - style:
+              font-size: 9vw
+              font-weight: 550
+              left: 50%
+              text-align: center
+              top: 70%
+              color: lightgrey
+            #   transform: none
+            tap_action:
+              action: none
+            text: 'Instellingen'
+            type: custom:text-element
+# Gast
+          - style:
+              font-size: 6vw
+              font-weight: 350
+              left: 12%
+              text-align: left
+              top: 75%
+              transform: none
+            tap_action:
+              action: none
+            text: 'Gast modus'
+            type: custom:text-element
+          - type: image
+            entity: input_boolean.gast
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 80%
+              top: 76%
+              width: 13%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.gast
+# Vakantie
+          - style:
+              font-size: 6vw
+              font-weight: 350
+              left: 12%
+              text-align: left
+              top: 79%
+              transform: none
+            tap_action:
+              action: none
+            text: 'Vakantie'
+            type: custom:text-element
+          - type: image
+            entity: input_boolean.vakantie
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 80%
+              top: 80%
+              width: 13%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.vakantie
+# Eco
+          - style:
+              font-size: 6vw
+              font-weight: 350
+              left: 12% #25
+              text-align: left
+              top: 83% #20
+              transform: none
+            tap_action:
+              action: none
+            text: 'Eco modus'
+            type: custom:text-element
+          - type: image
+            entity: input_boolean.eco
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 80%     #+19
+              top: 84%    #+1.5
+              width: 13%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.eco
+# Turbo
+          - style:
+              font-size: 6vw
+              font-weight: 350
+              left: 12%
+              text-align: left
+              top: 87%
+              transform: none
+            tap_action:
+              action: none
+            text: 'Turbo modus'
+            type: custom:text-element
+          - type: image
+            entity: input_boolean.turbo
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 80%
+              top: 88%
+              width: 13%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: input_boolean.turbo
+# Koelen
+          - style:
+              font-size: 6vw
+              font-weight: 350
+              left: 12%
+              text-align: left
+              top: 91%
+              transform: none
+            tap_action:
+              action: none
+            text: 'Koelen'
+            type: custom:text-element
+          - type: image
+            image: /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 80%
+              top: 92%
+              width: 13%
+# AdGuard
+          - style:
+              font-size: 6vw
+              font-weight: 350
+              left: 12%
+              text-align: left
+              top: 95%
+              transform: none
+            tap_action:
+              action: none
+            text: 'AdGuard'
+            type: custom:text-element
+          - type: image
+            entity: switch.adguard_protection
+            state_image:
+              'on': /local/images/switch_on.png
+              'off': /local/images/switch_off.png
+            style:
+              box-shadow: '0px 0px 10px black'
+              border-radius: 35px
+              left: 80%
+              top: 96%
+              width: 13%
+            tap_action:
+              action: call-service
+              service: homeassistant.toggle
+              service_data:
+                entity_id: switch.adguard_protection
