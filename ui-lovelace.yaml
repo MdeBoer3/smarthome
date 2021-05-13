@@ -1,0 +1,169 @@
+background: center / cover no-repeat url("/local/images/black-2048.png") fixed
+title: Lavendelstraat
+views:
+  - badges: []
+    cards:
+      - elements: !include lovelace/verwarming_mobile.yaml
+        image: /local/images/nordic_mobile_3.jpg
+        type: picture-elements
+    icon: 'mdi:cellphone-iphone'
+    panel: true
+    path: 0
+    theme: ios-dark-mode
+    title: Verwarming
+  - badges: []
+    cards:
+      - elements: !include lovelace/verwarming.yaml
+        image: /local/images/nordic_5.jpg
+        type: picture-elements
+    icon: 'mdi:home'
+    panel: true
+    path: 1
+    theme: ios-dark-mode
+    title: Verwarming
+  - badges: []
+    cards:
+      - elements: !include lovelace/media.yaml
+        image: /local/images/nordic_5.jpg
+        type: picture-elements
+    icon: 'mdi:television-classic'
+    panel: true
+    path: 2
+    theme: ios-dark-mode
+    title: Media
+  - badges: []
+    cards:
+      - elements: !include lovelace/energie.yaml
+        image: /local/images/nordic_5.jpg
+        type: picture-elements
+    icon: 'mdi:flash'
+    panel: true
+    path: 3
+    theme: ios-dark-mode
+    title: Energie
+  - badges: []
+    cards:
+      - elements: !include lovelace/instellingen.yaml
+        image: /local/images/nordic_5.jpg
+        type: picture-elements
+    icon: 'mdi:toggle-switch'
+    panel: true
+    path: 4
+    theme: ios-dark-mode
+    title: Instellingen
+  - badges: []
+    cards:
+      - elements: !include lovelace/hvac_grafiek.yaml
+        image: /local/images/nordic_5.jpg
+        type: picture-elements
+    icon: 'mdi:chart-line'
+    panel: true
+    path: 5
+    theme: ios-dark-mode
+    title: HVAC grafiek
+  - badges: []
+    cards:
+      - elements: !include lovelace/energie_grafiek.yaml
+        image: /local/images/nordic_5.jpg
+        type: picture-elements
+    icon: 'mdi:chart-line'
+    panel: true
+    path: 6
+    theme: ios-dark-mode
+    title: Energie grafiek
+  - badges: []
+    cards:
+      - elements: !include lovelace/buienradar.yaml
+        image: /local/images/nordic_5.jpg
+        type: picture-elements
+    icon: 'mdi:weather-pouring'
+    panel: true
+    path: 7
+    theme: ios-dark-mode
+    title: Buienradar
+  - badges: []
+    cards:
+      - elements: !include lovelace/screensaver.yaml
+        image: /local/images/black-2048.jpg
+        type: picture-elements
+    icon: 'mdi:clock-time-three-outline'
+    panel: true
+    path: 8
+    theme: ios-dark-mode
+    title: Screensaver
+  - badges: []
+    cards:
+        - type: picture-entity
+          entity: camera.voordeur_2
+          camera_view: live
+          aspect_ratio: 16:12
+          show_name: false
+          show_state: false
+          tap_action:
+              action: navigate
+              navigation_path: /lovelace/1/
+    icon: 'mdi:camera'
+    panel: true
+    path: 9
+    theme: ios-dark-mode
+    title: Camera
+  - badges: []
+    cards:
+      - elements: !include lovelace/media_mobile.yaml
+        image: /local/images/nordic_mobile_3.jpg
+        type: picture-elements
+    icon: 'mdi:cellphone-iphone'
+    panel: true
+    path: 10
+    theme: ios-dark-mode
+    title: Media
+  - badges: []
+    cards:
+      - elements: !include lovelace/energie_mobile.yaml
+        image: /local/images/nordic_mobile_3.jpg
+        type: picture-elements
+    icon: 'mdi:cellphone-iphone'
+    panel: true
+    path: 11
+    theme: ios-dark-mode
+    title: Energie
+  - badges: []
+    cards:
+      - elements: !include lovelace/instellingen_mobile.yaml
+        image: /local/images/nordic_mobile_3.jpg
+        type: picture-elements
+    icon: 'mdi:cellphone-iphone'
+    panel: true
+    path: 12
+    theme: ios-dark-mode
+    title: Instellingen
+  - badges: []
+    cards:
+        - type: picture-entity
+          entity: camera.voordeur_2
+          camera_view: live
+          aspect_ratio: 16:12
+          show_name: false
+          show_state: false
+          tap_action:
+              action: navigate
+              navigation_path: /lovelace/0/
+    icon: 'mdi:camera'
+    panel: true
+    path: 13
+    theme: ios-dark-mode
+    title: Camera
+
+kiosk_mode:
+  kiosk: true
+  admin_settings:
+    hide_header: false
+    hide_sidebar: false
+  non_admin_settings:
+    hide_header: true
+    hide_sidebar: true
+
+screensaver:
+  unsplash_access_key: PpC8iHgS6-CtXoCcfn9IhqQgp7_ePzWZOESDUdF6IJQ
+  query: austria
+  idle_time: 1000000
